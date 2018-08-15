@@ -5,5 +5,6 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: sudo npm install -g now
-      - run: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+      - run: npm install now
+      - run: cd project
+      - run: ./node_modules/.bin/now --public --token $NOW_TOKEN && ./node_modules/.bin/now alias --token $NOW_TOKEN
