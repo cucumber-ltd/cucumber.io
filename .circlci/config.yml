@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+        name: Deploy using zeit.co
+        command: |
+          now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
