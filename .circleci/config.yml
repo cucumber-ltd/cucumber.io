@@ -1,26 +1,9 @@
 version: 2
 jobs:
-  setup:
+  build:
     docker:
       - image: circleci/node
     steps:
-      - run: npm install -g now
-
-  deploy:
-    machine:
-      enabled: true
-    steps:
       - checkout
+      - run: npm install -g now
       - run: now --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
-
-workflows:
-  version: 2
-  prep-and-deploy:
-    jobs:
-      - setup
-      - deploy:
-        requires:
-          - build
-        filters:
-          branches:
-            only: master
