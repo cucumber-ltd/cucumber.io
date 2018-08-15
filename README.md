@@ -1,4 +1,5 @@
-# cucumber.io web server
+cucumber.io web server
+----------------------
 
 This repo contains the source for an nginx web server that will run at https://cucumber.io to handle our incoming traffic.
 
