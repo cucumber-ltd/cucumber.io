@@ -4,7 +4,7 @@ aliases:
     command: npm install now
   - &deploy
     name: Deploy using zeit.co's now
-    command: NOW && NOW alias  
+    command: $NOW && $NOW alias  
 
 defaults: &defaults
   docker:
