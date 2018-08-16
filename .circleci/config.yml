@@ -4,13 +4,13 @@ aliases:
     command: npm install now
   - &deploy
     name: Deploy using zeit.co's now
-    command: $NOW && $NOW alias  
+    command: |
+      export NOW=./node_modules/.bin/now --team cucumber --token $NOW_TOKEN
+      $NOW && $NOW alias
 
 defaults: &defaults
   docker:
     - image: circleci/node
-  environment:
-    NOW: ./node_modules/.bin/now --team cucumber --token $NOW_TOKEN
 
 version: 2
 jobs:
