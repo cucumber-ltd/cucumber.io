@@ -2,5 +2,6 @@
   "name": "cucumber.io",
   "alias": "next.cucumber.io",
   "public": true,
-  "regions": "bru"
+  "regions": "bru",
+  "verify": false
 }
