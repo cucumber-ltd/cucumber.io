@@ -6,7 +6,7 @@ aliases:
     name: Deploy using zeit.co's now
     command: |
       export NOW="./node_modules/.bin/now --team cucumber --token $NOW_TOKEN"
-      $NOW --regions bru --no-verify # && $NOW alias
+      $NOW --regions bru --no-verify && $NOW alias
 
 defaults: &defaults
   docker:
