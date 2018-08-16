@@ -1,9 +1,22 @@
+aliases:
+  - &install_now
+    name: Install Now
+    command: npm install now
+  - &deploy
+    name: Deploy using zeit.co's now
+    command: NOW --public --token $NOW_TOKEN && NOW alias --token $NOW_TOKEN --team cucumber
+
+defaults: &defaults
+  docker:
+    - image: circleci/node
+  environment:
+    NOW: ./node_modules/.bin/now
+
 version: 2
 jobs:
   build:
-    docker:
-      - image: circleci/node
+    <<: *defaults
     steps:
       - checkout
-      - run: npm install now
-      - run: ./node_modules/.bin/now --public --token $NOW_TOKEN && ./node_modules/.bin/now alias --token $NOW_TOKEN --team cucumber
+      - run: *install_now
+      - run: *deploy
