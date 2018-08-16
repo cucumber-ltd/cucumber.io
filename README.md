@@ -5,6 +5,8 @@ This repo contains the source for an nginx web server that will run at https://c
 
 It mostly uses a reverse proxy to forward that traffic on to other hosts.
 
+Server config is `nginx.conf` and the routing is handled in `server.conf`
+
 It's deployed to https://zeit.co by CircleCI
 
 [![CircleCI](https://circleci.com/gh/cucumber/cucumber.io/tree/master.svg?style=svg)](https://circleci.com/gh/cucumber/cucumber.io/tree/master)
