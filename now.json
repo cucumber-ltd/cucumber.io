@@ -1,6 +1,5 @@
 {
   "name": "cucumber.io",
   "alias": "next.cucumber.io",
-  "public": true,
-  "verify": false
+  "public": true
 }
