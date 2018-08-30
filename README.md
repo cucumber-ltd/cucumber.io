@@ -1,9 +1,7 @@
 cucumber.io web server
 ----------------------
 
-This repo contains the source for an nginx web server that will run at https://cucumber.io to handle our incoming traffic. For now, we're testing it at https://next.cucumber.io
-
-It mostly uses a reverse proxy to forward that traffic on to other hosts.
+This repo contains the source for an nginx web server that runs at https://cucumber.io to handle our incoming traffic. It's job is to forward on URLs to different web servers that handle different parts of our website.
 
 Server config is `nginx.conf` and the routing is handled in `server.conf`
 
