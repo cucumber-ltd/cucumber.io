@@ -21,10 +21,13 @@ In a few seconds, zeit will spin up a server at a new URL which you can use to m
 
 ## Getting access
 
-To be able to deploy, you'll need release karma on Cucumber's zeit account. Current holders of this Karma are:
+To be able to deploy to zeit, you'll need release karma on Cucumber's zeit account. Current holders of this Karma are:
 
   * [Matt Wynne](http://github.com/mattwynne)
   * [Jayson Smith](http://github.com/jaysonesmith)
   * [Romain Gérard](http://github.com/romaingweb)
 
-To get release Karma, send a pull request to this repo adding yourself to the list above.
+To get release Karma for yourself:
+
+1. https://zeit.co/signup
+2. Send a pull request to this repo adding yourself to the list above and one of us will [add you to the team](https://zeit.co/teams/cucumber/settings/members).
