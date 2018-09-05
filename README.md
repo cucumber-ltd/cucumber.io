@@ -15,6 +15,6 @@ It's automatically deployed to https://zeit.co when you push to master.
 To test changes to the config, install the [zeit `now` CLI](https://zeit.co/download#now-cli) and use 
 it to publish your local working copy to a docker instance in the cloud (you don't have to commit to git).
 
-![how to test](https://github.com/cucumber/cucumber.io/blob/master/README.tty.gif?raw=true)
+![how to test](https://github.com/cucumber/cucumber.io/blob/master/README.terminal.gif?raw=true)
 
 In a few seconds, zeit will spin up a server at a new URL which you can use to manually test your changes.
