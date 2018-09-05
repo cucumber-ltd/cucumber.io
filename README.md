@@ -18,3 +18,13 @@ it to publish your local working copy to a docker instance in the cloud (you don
 ![how to test](https://github.com/cucumber/cucumber.io/blob/master/README.terminal.gif?raw=true)
 
 In a few seconds, zeit will spin up a server at a new URL which you can use to manually test your changes.
+
+## Getting access
+
+To be able to deploy, you'll need release karma on Cucumber's zeit account. Current holders of this Karma are:
+
+  * [Matt Wynne](http://github.com/mattwynne)
+  * [Jayson Smith](http://github.com/jaysonesmith)
+  * [Romain Gérard](http://github.com/romaingweb)
+
+To get release Karma, send a pull request to this repo adding yourself to the list above.
