@@ -10,7 +10,7 @@ It's automatically deployed to https://zeit.co when you push to master.
 
 [![CircleCI](https://circleci.com/gh/cucumber/cucumber.io/tree/master.svg?style=svg)](https://circleci.com/gh/cucumber/cucumber.io/tree/master)
 
-##Testing changes
+## Testing changes
 
 To test changes to the config, install the [zeit `now` CLI](https://zeit.co/download#now-cli) and use 
 it to publish your local working copy to a docker instance in the cloud (you don't have to commit to git).
