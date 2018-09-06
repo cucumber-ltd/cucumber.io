@@ -26,6 +26,7 @@ To be able to deploy to zeit, you'll need release karma on Cucumber's zeit accou
   * [Matt Wynne](http://github.com/mattwynne)
   * [Jayson Smith](http://github.com/jaysonesmith)
   * [Romain Gérard](http://github.com/romaingweb)
+  * [Julien Biezemans](http://github.com/jbpros)
 
 To get release Karma for yourself:
 
