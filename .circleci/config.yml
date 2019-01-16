@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - run: |
-        docker build -t web .
-        heroku container:push web --app cucumber-io-proxy
-        heroku container:release web --app cucumber-io-proxy
+          docker build -t web .
+          heroku container:push web --app cucumber-io-proxy
+          heroku container:release web --app cucumber-io-proxy
 
