@@ -1,20 +1,11 @@
-aliases:
-  - &deploy
-    name: Deploy using Heroku
-    command: |
-      docker build -t web .
-      heroku container:push web --app cucumber-io-proxy
-      heroku container:release web --app cucumber-io-proxy
-
-defaults: &defaults
-  docker:
-    - image: buildpack-deps:trusty
-
 version: 2
 jobs:
   build:
-    <<: *defaults
+    machine: true
     steps:
       - checkout
-      - setup_remote_docker
-      - run: *deploy
+      - run: |
+        docker build -t web .
+        heroku container:push web --app cucumber-io-proxy
+        heroku container:release web --app cucumber-io-proxy
+
