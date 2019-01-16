@@ -1,16 +1,14 @@
 aliases:
-  - &install_now
-    name: Install Now
-    command: npm install now
   - &deploy
-    name: Deploy using zeit.co's now
+    name: Deploy using Heroku
     command: |
-      export NOW="./node_modules/.bin/now --team cucumber --token $NOW_TOKEN"
-      $NOW --regions bru --no-verify && $NOW alias
+      docker build -t web .
+      heroku container:push web --app cucumber-io-proxy
+      heroku container:release web --app cucumber-io-proxy
 
 defaults: &defaults
   docker:
-    - image: circleci/node
+    - image: buildpack-deps:trusty
 
 version: 2
 jobs:
@@ -18,5 +16,4 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: *install_now
       - run: *deploy
