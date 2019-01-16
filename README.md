@@ -18,12 +18,14 @@ This nginx app looks at the path in the request and, according to [its rules](ht
 
 For example, traffic to `/blog` is handled by the old Heroku app running at https://cucumber-website.herokuapp.com wheras traffic to `/` or `/events` is handled by Squarespace running at https://cucumber-website.squarespace.com
 
+```
 +-------------+        +----------------
 |             |        |               |
 | Cloudflare  |        |  cucumber.io  |         /blog  +----->   cucumber-website.herokuapp.com
 |             +-------->  nginx proxy  +------>
 |             |        |               |         /      +----->   cucumber-website.squarespace.com
 +-------------+        +---------------+
+```
 
 ## Why did you make it so complicated?!
 
