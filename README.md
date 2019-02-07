@@ -1,7 +1,7 @@
 cucumber.io proxy server
 ------------------------
 
-This repo contains the source for an nginx web server that runs at https://cucumber.io to handle our incoming traffic. Its 
+This repo contains the source for an nginx web server that runs at https://cucumber.io to handle our incoming traffic. Its
 job is to forward on URLs to different web servers that serve the content for different parts of our website.
 
 The routing configuration is in [`nginx/server.conf`](https://github.com/cucumber/cucumber.io/blob/master/nginx/server.conf)
@@ -16,7 +16,7 @@ Cloudflare's DNS servers send requests to this nginx app, running at https://cuc
 
 This nginx app looks at the path in the request and, according to [its rules](https://github.com/cucumber/cucumber.io/blob/master/nginx/server.conf), makes another request to the server that's actually responsible for delivering content for that path.
 
-For example, traffic to `/blog` is handled by the old Heroku app running at https://cucumber-website.herokuapp.com wheras traffic to `/` or `/events` is handled by Squarespace running at https://cucumber-website.squarespace.com
+For example, traffic to `/blog` is handled by the old Heroku app running at https://cucumber-website.herokuapp.com whereas traffic to `/` or `/events` is handled by Squarespace running at https://cucumber-website.squarespace.com
 
 ```
 +-------------+        +----------------
