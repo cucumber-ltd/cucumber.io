@@ -10,4 +10,6 @@ jobs:
           curl https://cli-assets.heroku.com/install.sh | sh
           heroku container:push web --app cucumber-io-proxy
           heroku container:release web --app cucumber-io-proxy
-
+    branches:
+      only:
+        - master
