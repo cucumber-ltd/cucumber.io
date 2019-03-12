@@ -16,14 +16,14 @@ Cloudflare's DNS servers send requests to this nginx app, running at https://cuc
 
 This nginx app looks at the path in the request and, according to [its rules](https://github.com/cucumber/cucumber.io/blob/master/nginx/server.conf), makes another request to the server that's actually responsible for delivering content for that path.
 
-For example, traffic to `/blog` is handled by the old Heroku app running at https://cucumber-website.herokuapp.com whereas traffic to `/` or `/events` is handled by Squarespace running at https://cucumber-website.squarespace.com
+For example, traffic to `/training` is handled by the old Heroku app running at https://cucumber-website.herokuapp.com whereas traffic to `/` or `/events` is handled by Squarespace running at https://cucumber-website.squarespace.com
 
 ```
 +-------------+        +----------------
 |             |        |               |
-| Cloudflare  |        |  cucumber.io  |         /blog  +----->   cucumber-website.herokuapp.com
+| Cloudflare  |        |  cucumber.io  |         /training  +----->   cucumber-website.herokuapp.com
 |             +-------->  nginx proxy  +------>
-|             |        |               |         /      +----->   cucumber-website.squarespace.com
+|             |        |               |         /          +----->   cucumber-website.squarespace.com
 +-------------+        +---------------+
 ```
 
