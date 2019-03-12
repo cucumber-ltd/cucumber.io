@@ -21,9 +21,9 @@ For example, traffic to `/training` is handled by the old Heroku app running at 
 ```
 +-------------+        +----------------
 |             |        |               |
-| Cloudflare  |        |  cucumber.io  |         /training  +----->   cucumber-website.herokuapp.com
-|             +-------->  nginx proxy  +------>
-|             |        |               |         /          +----->   cucumber-website.squarespace.com
+| Cloudflare  |        |  cucumber.io  |         /          +----->   cucumber-website.squarespace.com
+|             +-------->  nginx proxy  +------>  /blog      +----->   cucumber.ghost.io
+|             |        |               |         /training  +----->   cucumber-website.herokuapp.com
 +-------------+        +---------------+
 ```
 
