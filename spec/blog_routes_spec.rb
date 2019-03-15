@@ -3,7 +3,7 @@
 require 'faraday'
 require 'pry-byebug'
 
-describe 'blog routes' do
+describe '/blog routes' do
   describe '/blog root' do
     context '/blog with no trailing slash' do
       it 'redirects to cucumber.ghost.io/' do
@@ -16,11 +16,12 @@ describe 'blog routes' do
     end
 
     context '/blog with no trailing slash' do
-      it 'redirects to cucumber.ghost.io/' do
+      it 'proxies to cucumber.ghost.io/' do
         res = Faraday.get 'http://localhost:9001/blog/'
 
         found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
 
+        expect(res.status).to eq(200)
         expect(found).to be true
       end
     end
@@ -35,5 +36,14 @@ describe 'blog routes' do
     end
   end
 
-  describe
+  describe 'blog/slug urls are proxied to ghost' do
+    it 'proxies to cucumber.ghost.io/' do
+      res = Faraday.get 'http://localhost:9001/blog/cukeup-2014/'
+
+      found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
+
+      expect(res.status).to eq(200)
+      expect(found).to be true
+    end
+  end
 end
