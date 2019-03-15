@@ -5,7 +5,7 @@ build_defaults: &build_defaults
 
 jobs:
   build_and_deploy:
-    machine: true
+    <<: *build_defaults
     steps:
       - checkout
       - run: |
