@@ -4,7 +4,7 @@ build_defaults: &build_defaults
   - image: ruby:2.3.8
 
 jobs:
-  build:
+  build_and_deploy:
     machine: true
     steps:
       - checkout
@@ -39,5 +39,4 @@ workflows:
     jobs:
       - test_image
       - stop_test_image
-      - build
-
+      - build_and_deploy
