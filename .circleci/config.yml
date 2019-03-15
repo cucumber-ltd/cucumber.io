@@ -36,6 +36,8 @@ workflows:
     jobs:
       - test_image
       - stop_test_image
+          requires:
+            - test_image
       - build_and_deploy:
           filters:
             branches:
