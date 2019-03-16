@@ -20,14 +20,13 @@ jobs:
     <<: *build_defaults
     steps:
       - checkout
-      - run: |
-          sudo apt-get install nginx
-          sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
-          sudo cp nginx/*.conf /etc/nginx/
-          sudo nginx
-          gem install bundler
-          bundle install
-          bundle exec rspec
+      - run: sudo apt-get install nginx
+      - run: sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
+      - run: sudo cp nginx/*.conf /etc/nginx/
+      - run: sudo nginx
+      - run: gem install bundler
+      - run: bundle install
+      - run: bundle exec rspec
 
 workflows:
   version: 2
