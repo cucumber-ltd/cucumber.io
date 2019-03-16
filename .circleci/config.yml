@@ -9,6 +9,7 @@ jobs:
     steps:
       - checkout
       - run: |
+          sudo service docker start
           docker build -t web .
           docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
           curl https://cli-assets.heroku.com/install.sh | sh
@@ -20,25 +21,17 @@ jobs:
     steps:
       - checkout
       - run: |
+          sudo service docker start
           docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
           docker run -i --name web -p 9001:9001 -d --rm web
           bundle install
           bundle exec rspec
-
-  stop_test_image:
-    <<: *build_defaults
-    steps:
-      - checkout
-      - run: docker stop web
 
 workflows:
   version: 2
   test:
     jobs:
       - test_image
-      - stop_test_image:
-          requires:
-            - test_image
       - build_and_deploy:
           filters:
             branches:
