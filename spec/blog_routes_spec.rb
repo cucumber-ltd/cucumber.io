@@ -6,8 +6,8 @@ describe '/blog routes' do
       it 'redirects to cucumber.ghost.io/' do
         res = Faraday.get 'http://localhost:9001/blog'
 
-        found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
-        expect(found).to be true
+        expect(res.status).to eq 200
+        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.ghost.io/blog/'
       end
     end
 
@@ -15,9 +15,8 @@ describe '/blog routes' do
       it 'proxies to cucumber.ghost.io/' do
         res = Faraday.get 'http://localhost:9001/blog/'
 
-        found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
-        expect(res.status).to eq(200)
-        expect(found).to be true
+        expect(res.status).to eq 200
+        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.ghost.io/blog/'
       end
     end
   end
@@ -26,7 +25,7 @@ describe '/blog routes' do
     it '301s to /blog/blog-slug' do
       res = Faraday.get 'http://localhost:9001/blog/2014/01/28/cukeup-2014'
 
-      expect(res.status).to eq(301)
+      expect(res.status).to eq 301
       expect(res.headers.dig('location')).to eq('http://localhost:9001/blog/cukeup-2014')
     end
   end
@@ -35,9 +34,8 @@ describe '/blog routes' do
     it 'proxies to cucumber.ghost.io/' do
       res = Faraday.get 'http://localhost:9001/blog/cukeup-2014/'
 
-      found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
-      expect(res.status).to eq(200)
-      expect(found).to be true
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.ghost.io/blog/cukeup-2014/'
     end
   end
 
@@ -45,7 +43,7 @@ describe '/blog routes' do
     it 'proxies to cucumber.ghost.io/' do
       res = Faraday.get 'http://localhost:9001/blog/introducing-example-mapping'
 
-      expect(res.status).to eq(302)
+      expect(res.status).to eq 302
       expect(res.headers.dig('location')).to eq('http://localhost:9001/blog/example-mapping-introduction/')
     end
   end

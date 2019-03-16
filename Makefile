@@ -7,8 +7,8 @@ unit:
 .PHONY: rebuild
 rebuild: 
 	docker stop web
-	docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
-	docker run -i --name web -p 9001:9001 -d --rm web
+	docker build -t web .
+	docker run -i --name web -p 9001:9001 -d --rm --env PORT=9001 --env NAME=localhost web
 
 .PHONY: rubocop
 rubocop: 
