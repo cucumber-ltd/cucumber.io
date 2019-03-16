@@ -3,9 +3,9 @@
 require 'pry-byebug'
 
 describe 'docs routes' do
-  pending('disabled for now')
   describe '/docs' do
     it 'redirects to docs.cucumber.io' do
+      pending('disabled for now')
       res = Faraday.get 'http://localhost:9001/docs'
 
       found = res.headers.dig('x-proxy-pass').include?('https://docs.cucumber.io/')
