@@ -19,16 +19,16 @@ jobs:
     <<: *build_defaults
     steps:
       - checkout
-      - docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
-      - docker run -i --name web -p 9001:9001 -d --rm web
-      - bundle install
-      - bundle exec rspec
+      - run: docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
+      - run: docker run -i --name web -p 9001:9001 -d --rm web
+      - run: bundle install
+      - run: bundle exec rspec
 
   stop_test_image:
     <<: *build_defaults
     steps:
       - checkout
-      - docker stop web
+      - run: docker stop web
 
 workflows:
   version: 2
