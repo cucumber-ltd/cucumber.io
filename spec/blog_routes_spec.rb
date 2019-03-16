@@ -5,9 +5,8 @@ describe '/blog routes' do
     context '/blog with no trailing slash' do
       it 'redirects to cucumber.ghost.io/' do
         res = Faraday.get 'http://localhost:9001/blog'
-        puts res.headers
-        found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
 
+        found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
         expect(found).to be true
       end
     end
@@ -17,7 +16,6 @@ describe '/blog routes' do
         res = Faraday.get 'http://localhost:9001/blog/'
 
         found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
-
         expect(res.status).to eq(200)
         expect(found).to be true
       end
@@ -38,7 +36,6 @@ describe '/blog routes' do
       res = Faraday.get 'http://localhost:9001/blog/cukeup-2014/'
 
       found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
-
       expect(res.status).to eq(200)
       expect(found).to be true
     end
