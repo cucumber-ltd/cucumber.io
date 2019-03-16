@@ -22,8 +22,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
-          docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
-          docker run -i --name web -p 9001:9001 -d --rm web
+          sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" /etc/nginx/server.conf && nginx -g 'daemon off;'
           gem install bundler
           bundle install
           bundle exec rspec
