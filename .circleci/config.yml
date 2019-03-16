@@ -1,15 +1,39 @@
 version: 2
+build_defaults: &build_defaults
+  docker:
+  - image: circleci/ruby:2.3.8
+
 jobs:
-  build:
-    machine: true
+  build_and_deploy:
+    <<: *build_defaults
     steps:
       - checkout
-      - run: |
-          docker build -t web .
-          docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
-          curl https://cli-assets.heroku.com/install.sh | sh
-          heroku container:push web --app cucumber-io-proxy
-          heroku container:release web --app cucumber-io-proxy
-    branches:
-      only:
-        - master
+      - setup_remote_docker
+      - run: docker build -t web .
+      - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+      - run: curl https://cli-assets.heroku.com/install.sh | sh
+      - run: heroku container:push web --app cucumber-io-proxy
+      - run: heroku container:release web --app cucumber-io-proxy
+
+  test_image:
+    <<: *build_defaults
+    steps:
+      - checkout
+      - run: sudo apt-get install nginx
+      - run: sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
+      - run: sed -i -e "s|\user  nginx|user  circleci|" ./nginx/nginx.conf
+      - run: sudo cp nginx/*.conf /etc/nginx/
+      - run: sudo nginx
+      - run: gem install bundler
+      - run: bundle install
+      - run: bundle exec rspec
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test_image
+      - build_and_deploy:
+          filters:
+            branches:
+              only: master

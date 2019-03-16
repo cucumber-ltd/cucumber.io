@@ -1,0 +1,14 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - '.pryrc'
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false

@@ -32,3 +32,5 @@ For example, traffic to `/training` is handled by the old Heroku app running at 
 Well. We wanted to be able to migrate the website one page at a time from the old Heroku app over to Squarespace. Using this proxy allows us to choose what content is delivered by what back-end. It's like Cloudflare's page rules, only we have much more control over them.
 
 [![CircleCI](https://circleci.com/gh/cucumber/cucumber.io/tree/master.svg?style=svg)](https://circleci.com/gh/cucumber/cucumber.io/tree/master)
+
+## Testing
