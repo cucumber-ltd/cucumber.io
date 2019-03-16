@@ -9,7 +9,6 @@ jobs:
     steps:
       - checkout
       - run: |
-          sudo service docker start
           docker build -t web .
           docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
           curl https://cli-assets.heroku.com/install.sh | sh
@@ -21,7 +20,6 @@ jobs:
     steps:
       - checkout
       - run: |
-          sudo service docker start
           docker build -t web --build-arg PORT=9001 --build-arg NAME=localhost .
           docker run -i --name web -p 9001:9001 -d --rm web
           bundle install
