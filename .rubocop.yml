@@ -9,3 +9,6 @@ Metrics/ClassLength:
 
 Metrics/BlockLength:
   Enabled: false
+
+Metrics/LineLength:
+  Enabled: false

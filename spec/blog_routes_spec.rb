@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'pry-byebug'
-
 describe '/blog routes' do
   describe '/blog root' do
     context '/blog with no trailing slash' do
       it 'redirects to cucumber.ghost.io/' do
         res = Faraday.get 'http://localhost:9001/blog'
-
+        puts res.headers
         found = res.headers.dig('set-cookie').include?('cucumber.ghost.io')
 
         expect(found).to be true
@@ -44,6 +41,15 @@ describe '/blog routes' do
 
       expect(res.status).to eq(200)
       expect(found).to be true
+    end
+  end
+
+  describe 'custom paths' do
+    it 'proxies to cucumber.ghost.io/' do
+      res = Faraday.get 'http://localhost:9001/blog/introducing-example-mapping'
+
+      expect(res.status).to eq(302)
+      expect(res.headers.dig('location')).to eq('http://localhost:9001/blog/example-mapping-introduction/')
     end
   end
 end
