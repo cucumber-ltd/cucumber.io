@@ -1,0 +1,136 @@
+daemon off;
+# Heroku dynos have at least 4 cores.
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+
+events {
+  use epoll;
+  accept_mutex on;
+  worker_connections <%= ENV['NGINX_WORKER_CONNECTIONS'] || 1024 %>;
+}
+
+http {
+  gzip on;
+  gzip_comp_level 2;
+  gzip_min_length 512;
+
+  server_tokens off;
+
+  log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
+  access_log logs/nginx/access.log l2met;
+  error_log logs/nginx/error.log;
+
+  include mime.types;
+  default_type application/octet-stream;
+  sendfile on;
+
+  # Must read the body in 5 seconds.
+  client_body_timeout <%= ENV['NGINX_CLIENT_BODY_TIMEOUT'] || 5 %>;
+
+  include /etc/nginx/proxy.conf;
+
+  server {
+    listen <%= ENV['PORT'] || 9001 %>;
+    server_name cucumber.io;
+
+    rewrite ^/docs(.*)$                     https://docs.cucumber.io/$1 permanent;
+
+    # # # Fix broken slug urls
+    rewrite ^blog/introducing-example-mapping$ $scheme://$http_host/blog/example-mapping-introduction last;
+    rewrite ^/blog/introducing-example-mapping/$ $scheme://$http_host/blog/example-mapping-introduction last;
+    rewrite ^/blog/2016/09/13/cucumber-jvm-1\.2\.5/$ $scheme://$http_host/blog/cucumber-jvm-1-2-5 permanent;
+    rewrite ^/blog/cucumber-jvm-1\.2\.5/$ $scheme://$http_host/blog/cucumber-jvm-1-2-5 permanent;
+    rewrite ^/blog/2015/09/11/cucumber-2\.1/$ $scheme://$http_host/blog/cucumber-2-1 permanent;
+    rewrite ^/blog/cucumber-2\.1/$ $scheme://$http_host/blog/cucumber-2-1 permanent;
+
+    # # rewrite old blog urls that have dates in the path
+    rewrite ^/blog/(?:[0-9]+)\/(?:[0-9]+)\/(?:[0-9]+)(.*)$ $scheme://$http_host/blog$1 permanent;
+
+    # redirect old Ruby API links
+    rewrite ^/api/cucumber/ruby/yardoc(.*)$ http://www.rubydoc.info/github/cucumber/cucumber-ruby$1 permanent;
+    rewrite ^/cucumber/api/ruby/latest(.*)$ http://www.rubydoc.info/github/cucumber/cucumber-ruby$1 permanent;
+
+    # redirect initials to homepage for tracking business cards¬
+    # we may want to create personal pages thanking people for chatting with us¬
+    # at these urls¬
+    rewrite ^/(ah|jb|mw|sr|st|tsr|rm)$      /;
+
+    # podcast feed
+    rewrite ^/podcast/feed.xml$             http://feeds.soundcloud.com/users/soundcloud:users:181591133/sounds.rss;
+
+    # Squarespace
+    location / {
+        proxy_set_header  Host                cucumber-website.squarespace.com;
+        proxy_pass        https://cucumber-website.squarespace.com;
+    }
+    location = /assets/ui-icons.svg {
+        proxy_set_header  Host    cucumber-website.squarespace.com;
+        proxy_pass        https://cucumber-website.squarespace.com/assets/ui-icons.svg;
+    }
+
+    # Jam sales page
+    location /jam {
+        proxy_set_header  Host                jam.convertflowpages.com;
+        proxy_pass        https://jam.convertflowpages.com/sales;
+        proxy_ssl_server_name on;
+    }
+    rewrite ^/pro$ $scheme://$http_host/jam permanent;
+
+    # proxy /blog to ghost
+    location = /blog {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/;
+    }
+    location = /blog/ {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/;
+    }
+
+    # proxy the posts as linked from /blog
+    location ~ ^/blog/(.*)$ {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/blog/$1;
+    }
+    
+    # proxy relative logo url
+    location ~ ^/(content/images/2019/02/cucumber-black-512.png)$ {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/$1;
+    }
+
+    # proxy tag routes
+    location ~ ^/(tag|author|page)(.*)$ {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/$1$2;
+     }
+
+    # blog favicon
+    location = /favicon.png {
+         proxy_set_header Host cucumber.ghost.io;
+         proxy_pass  https://cucumber.ghost.io/favicon.png;
+    }
+
+    # Old Ruby / Rack app on heroku
+    location ~ ^/(school|training|talks|team|pro|privacy|logo-contest|contact-preferences|feed.xml)(.*)$ {
+        proxy_set_header  Host    cucumber-website.herokuapp.com;
+        proxy_pass        http://cucumber-website.herokuapp.com/$1$2;
+    }
+
+    rewrite ^/events/bdd-kickstart-boston-2018 /events/2018/10/31/bdd-kickstart-boston permanent;
+    rewrite ^/events/bdd-kickstart-austin-18   /events/2018/10/18/bdd-kickstart-austin permanent;
+    rewrite ^/events/bdd-kickstart-paris       /events/2018/10/11/bdd-kickstart-paris  permanent;
+    rewrite ^/events/cukenspace-usa            /events/2018/12/12/cukenspace-charlotte permanent;
+
+    # old events pages (new ones on squarespace start with the year in their url)
+    # we think we need to keep these for SEO
+    location ~ ^/(events/[a-z].*) {
+        proxy_set_header  Host    cucumber-website.herokuapp.com;
+        proxy_pass        http://cucumber-website.herokuapp.com/$1;
+    }
+
+    # assets used by the old Ruby / Rack app pages
+    location ~ ^/(assets|images|fonts)(.*)$ {
+        proxy_set_header  Host    cucumber-website.herokuapp.com;
+        proxy_pass        http://cucumber-website.herokuapp.com/$1$2;
+    }
+}
+}
