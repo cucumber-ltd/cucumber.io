@@ -2,7 +2,7 @@
 
 describe 'swag routes' do
   describe '/swag' do
-    it 'redirects to swag.cucumber.io' do
+    xit 'redirects to swag.cucumber.io' do
       res = Faraday.get 'http://localhost:9001/swag'
 
       expect(res.status).to eq 200
