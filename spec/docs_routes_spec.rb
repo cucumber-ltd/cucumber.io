@@ -2,7 +2,7 @@
 
 describe 'docs routes' do
   describe '/docs' do
-    it 'redirects to docs.cucumber.io' do
+    xit 'redirects to docs.cucumber.io' do
       res = Faraday.get 'http://localhost:9001/docs'
 
       expect(res.status).to eq 200
