@@ -5,9 +5,8 @@ describe 'squarespace routes' do
     it 'redirects to cucumber-website.squarespace.com/' do
       res = Faraday.get 'http://localhost:9001/'
 
-      found = res.headers.dig('x-proxy-pass').include?('https://cucumber-website.squarespace.com')
-      expect(res.status).to eq(200)
-      expect(found).to be true
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com'
     end
   end
 end
