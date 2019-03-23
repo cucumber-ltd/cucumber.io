@@ -22,7 +22,7 @@ describe '/blog routes' do
   end
 
   describe 'old blog url with date in path /blog/1111/11/blog-slug' do
-    it '301s to /blog/blog-slug' do
+    it '301s to /blog/{blog-slug}' do
       res = Faraday.get 'http://localhost:9001/blog/2014/01/28/cukeup-2014'
 
       expect(res.status).to eq 301
@@ -43,8 +43,8 @@ describe '/blog routes' do
     it 'proxies to cucumber.ghost.io/' do
       res = Faraday.get 'http://localhost:9001/blog/introducing-example-mapping'
 
-      expect(res.status).to eq 302
-      expect(res.headers.dig('location')).to eq('http://localhost:9001/blog/example-mapping-introduction/')
+      expect(res.status).to eq 301
+      expect(res.headers.dig('location')).to eq('/blog/introducing-example-mapping/')
     end
   end
 end
