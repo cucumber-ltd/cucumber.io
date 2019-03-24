@@ -6,7 +6,7 @@ job is to forward on URLs to different web servers that serve the content for di
 
 The routing configuration is in [`nginx/server.conf`](https://github.com/cucumber/cucumber.io/blob/master/nginx/server.conf)
 
-It's automatically deployed to Heroku when you push to master.
+It's automatically deployed to Heroku when you push to master if tests pass.
 
 ## How the whole thing works
 
