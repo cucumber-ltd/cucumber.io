@@ -3,7 +3,7 @@
 describe 'jam routes' do
   describe '/jam' do
     it 'redirects to jam.convertflowpages.com/sales' do
-      res = Faraday.get 'http://localhost:9001/jam'
+      res = Faraday.get "#{BASE_URL}/jam"
 
       expect(res.status).to eq 200
       expect(res.headers.dig('x-proxy-pass')).to eq 'https://jam.convertflowpages.com/sales'
@@ -12,7 +12,7 @@ describe 'jam routes' do
 
   describe '/pro' do
     it 'redirects to jam.convertflowpages.com/sales' do
-      res = Faraday.get 'http://localhost:9001/jam'
+      res = Faraday.get "#{BASE_URL}/jam"
 
       expect(res.status).to eq 200
       expect(res.headers.dig('x-proxy-pass')).to eq 'https://jam.convertflowpages.com/sales'
