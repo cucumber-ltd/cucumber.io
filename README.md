@@ -24,6 +24,7 @@ For example, traffic to `/training` is handled by the old Heroku app running at 
 | Cloudflare  |        |  cucumber.io  |         /          +----->   cucumber-website.squarespace.com
 |             +-------->  nginx proxy  +------>  /blog      +----->   cucumber.ghost.io
 |             |        |               |         /training  +----->   cucumber-website.herokuapp.com
+|             |        |               |         /docs      +----->   cucumber.netlify.com
 +-------------+        +---------------+
 ```
 
@@ -34,3 +35,19 @@ Well. We wanted to be able to migrate the website one page at a time from the ol
 [![CircleCI](https://circleci.com/gh/cucumber/cucumber.io/tree/master.svg?style=svg)](https://circleci.com/gh/cucumber/cucumber.io/tree/master)
 
 ## Testing
+
+### Local
+
+`make local_test`
+
+Spins up a local docker container on port 9001, runs rspec against it, and stops the container. If you'd like it to install gems for you too, run: `make local_test_setup`
+
+### Local against the live deployment
+
+`BASE_URL=https://cucumber.io make rspec`
+
+Installs gems and runs rspec against the live site
+
+### CircleCI
+
+During builds CircleCI will install nginx locally, and run rspec against that.
