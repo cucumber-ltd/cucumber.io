@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker build -t web --build-arg NAME=cucumber.io .
+      - run: docker build -t web .
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app cucumber-io-proxy
@@ -21,6 +21,8 @@ jobs:
       - checkout
       - run: sudo apt-get install nginx
       - run: sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
+      - run: sed -i "1d" ./nginx/nginx.conf
+      - run: sed -i "31d" ./nginx/nginx.conf
       - run: sudo cp nginx/*.conf /etc/nginx/
       - run: sudo nginx
       - run: gem install bundler
