@@ -1,33 +1,69 @@
-version: 2
-build_defaults: &build_defaults
-  docker:
-  - image: circleci/ruby:2.3.8
+version: 2.1
+executors:
+  ruby:
+    docker:
+    - image: circleci/ruby:2.3.8
+  working_directory: ~/cucumber.io
 
-jobs:
-  build_and_deploy:
-    <<: *build_defaults
+commands:
+  gems:
+    description: "Install gems needed for testing"
     steps:
-      - checkout
-      - setup_remote_docker
-      - run: docker build -t web .
-      - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
-      - run: curl https://cli-assets.heroku.com/install.sh | sh
-      - run: heroku container:push web --app cucumber-io-proxy
-      - run: heroku container:release web --app cucumber-io-proxy
-
-  test:
-    <<: *build_defaults
+      - restore_cache:
+        keys:
+          - v1-gemfile-{{ checksum "Gemfile.lock" }}
+      - run: gem install bundler
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+        key: v1-gemfile-{{ checksum "Gemfile.lock" }}
+        when: on_success
+        paths:
+          - ~/cucumber.io/vendor/bundle
+  
+  rspec:
+    description: "Run rspec tests"
     steps:
-      - checkout
+      - run: bundle exec rspec
+  
+  nginx:
+    description: "Install and configure nginx for testing"
+    steps:
       - run: sudo apt-get install nginx
       - run: sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
       - run: sed -i "1d" ./nginx/nginx.conf
       - run: sed -i "31d" ./nginx/nginx.conf
       - run: sudo cp nginx/*.conf /etc/nginx/
       - run: sudo nginx
-      - run: gem install bundler
-      - run: bundle install
-      - run: bundle exec rspec
+  
+  docker:
+    description: "Setup, build, and login to docker"
+    steps:
+      - setup_remote_docker
+      - run: docker build -t web .
+      - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+
+  heroku:
+    description: "Install heroku CLI then push and release the heroku app"
+    steps:
+      - run: curl https://cli-assets.heroku.com/install.sh | sh
+      - run: heroku container:push web --app cucumber-io-proxy
+      - run: heroku container:release web --app cucumber-io-proxy
+
+jobs:
+  build_and_deploy:
+    executor: ruby
+    steps:
+      - checkout
+      - docker
+      - heroku
+
+  test:
+    executor: ruby
+    steps:
+      - checkout
+      - nginx
+      - gems
+      - rspec
 
 workflows:
   version: 2
