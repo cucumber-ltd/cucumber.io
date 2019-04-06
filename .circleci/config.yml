@@ -11,11 +11,11 @@ commands:
     steps:
       - restore_cache:
           keys:
-            - v1-gemfile-{{ checksum "Gemfile.lock" }}
+            - v2-gemfile-{{ checksum "Gemfile.lock" }}
       - run: gem install bundler
       - run: bundle install --path vendor/bundle
       - save_cache:
-          key: v1-gemfile-{{ checksum "Gemfile.lock" }}
+          key: v2-gemfile-{{ checksum "Gemfile.lock" }}
           when: on_success
           paths:
             - ~/cucumber.io/vendor/bundle
