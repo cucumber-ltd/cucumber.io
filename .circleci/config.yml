@@ -45,6 +45,10 @@ commands:
       - setup_remote_docker
       - run: docker build -t web .
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
+      - run: curl https://cli-assets.heroku.com/install.sh | sh
+      # - run: heroku container:login
+      - run: heroku container:push web --app cucumber-io-proxy-staging
+      - run: heroku container:release web --app cucumber-io-proxy-staging
 
   heroku:
     description: "Install heroku CLI then push and release the Heroku app"
@@ -72,8 +76,8 @@ jobs:
     steps:
       - checkout
       - docker
-      - heroku:
-          app: "cucumber-io-proxy-staging"
+      # - heroku:
+      #     app: "cucumber-io-proxy-staging"
 
   local_test:
     executor: ruby
