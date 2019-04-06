@@ -26,7 +26,7 @@ commands:
       - run: bundle exec rspec
   
   nginx:
-    description: "Install and configure nginx for testing"
+    description: "Install and configure NGINX for testing"
     steps:
       - run: sudo apt-get install nginx
       - run: sed -i -e "s|\$PORT|9001|" -e "s|\$NAME|localhost|" ./nginx/server.conf
@@ -36,14 +36,14 @@ commands:
       - run: sudo nginx
   
   docker:
-    description: "Setup, build, and login to docker"
+    description: "Setup, build, and login to Docker"
     steps:
       - setup_remote_docker
       - run: docker build -t web .
       - run: docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
 
   heroku:
-    description: "Install heroku CLI then push and release the heroku app"
+    description: "Install heroku CLI then push and release the Heroku app"
     steps:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app cucumber-io-proxy
