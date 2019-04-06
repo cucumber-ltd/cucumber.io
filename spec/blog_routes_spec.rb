@@ -27,7 +27,7 @@ describe '/blog routes' do
 
       expect(res.status).to eq 301
       # to save money on the staging dyno, override the assertion to look for non-ssl routing here
-      if BASE_URL.includes('staging')
+      if BASE_URL.include?('staging')
         expect(res.headers.dig('location')).to eq("http://cucumber-io-proxy-staging.herokuapp.com/blog/cukeup-2014")
       else
         expect(res.headers.dig('location')).to eq("#{BASE_URL}/blog/cukeup-2014")
