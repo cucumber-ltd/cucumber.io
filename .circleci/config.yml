@@ -22,8 +22,12 @@ commands:
   
   rspec:
     description: "Run rspec tests"
+    parameters:
+      base_url:
+        type: string
+        default: "http://localhost:9001"
     steps:
-      - run: bundle exec rspec
+      - run: BASE_URL=<< parameters.base_url >> bundle exec rspec
   
   nginx:
     description: "Install and configure NGINX for testing"
@@ -50,29 +54,47 @@ commands:
       - run: heroku container:release web --app cucumber-io-proxy
 
 jobs:
-  build_and_deploy:
+  prod_build_and_deploy:
+    executor: ruby
+    steps:
+      - checkout
+      - docker
+      - heroku
+  
+  staging_build_and_deploy:
     executor: ruby
     steps:
       - checkout
       - docker
       - heroku
 
-  test:
+  local_test:
     executor: ruby
     steps:
       - checkout
       - nginx
       - gems
       - rspec
+  
+  staging_test:
+    executor: ruby
+    steps:
+      - checkout
+      - 
+      - gems
+      - rspec:
+          base_url: "https://cucumber-io-proxy-staging.herokuapp.com/"
 
 workflows:
   version: 2
   test:
     jobs:
-      - test
-      - build_and_deploy:
+      - local_test
+      - staging_test
+      - prod_build_and_deploy:
           requires:
-            - test
+            - local_test
+            - staging_test
           filters:
             branches:
               only: master
