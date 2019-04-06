@@ -13,7 +13,7 @@ commands:
           keys:
             - v1-gemfile-{{ checksum "Gemfile.lock" }}
       - run: gem install bundler
-      - run: bundle install --path vendor/bundle
+      - run: bundle install --path ~/cucumber.io/vendor/bundle
       - save_cache:
           key: v1-gemfile-{{ checksum "Gemfile.lock" }}
           when: on_success
