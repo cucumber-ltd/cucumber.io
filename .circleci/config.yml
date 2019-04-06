@@ -54,6 +54,7 @@ commands:
         default: "cucumber-io-proxy"
     steps:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
+      - run: heroku container:login
       - run: heroku container:push web --app << parameters.app >>
       - run: heroku container:release web --app << parameters.app >>
 
