@@ -10,15 +10,15 @@ commands:
     description: "Install gems needed for testing"
     steps:
       - restore_cache:
-        keys:
-          - v1-gemfile-{{ checksum "Gemfile.lock" }}
+          keys:
+            - v1-gemfile-{{ checksum "Gemfile.lock" }}
       - run: gem install bundler
       - run: bundle install --path vendor/bundle
       - save_cache:
-        key: v1-gemfile-{{ checksum "Gemfile.lock" }}
-        when: on_success
-        paths:
-          - ~/cucumber.io/vendor/bundle
+          key: v1-gemfile-{{ checksum "Gemfile.lock" }}
+          when: on_success
+          paths:
+            - ~/cucumber.io/vendor/bundle
   
   rspec:
     description: "Run rspec tests"
