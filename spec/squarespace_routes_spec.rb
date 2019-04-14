@@ -16,7 +16,7 @@ describe 'squarespace routes' do
 
       expect(res.status).to eq 301
       if BASE_URL.include?('staging')
-        puts "port: #{PORT}"
+        puts "port: #{$PORT}"
         puts "base_url: #{BASE_URL}"
         expect(res.headers.dig('location')).to eq("https://cucumber-io-proxy-staging.herokuapp.com/events/2018/10/18/bdd-kickstart-austin")
       else
