@@ -15,12 +15,7 @@ describe 'squarespace routes' do
       res = Faraday.get "#{BASE_URL}/events/bdd-kickstart-austin-18"
 
       expect(res.status).to eq 301
-      if BASE_URL.include?('staging')
-        puts ENV["PORT"]
-        expect(res.headers.dig('location')).to eq("https://cucumber-io-proxy-staging.herokuapp.com/events/2018/10/18/bdd-kickstart-austin")
-      else
-        expect(res.headers.dig('location')).to eq("#{BASE_URL}/events/2018/10/18/bdd-kickstart-austin")
-      end
+      expect(res.headers.dig('location')).to include("events/2018/10/18/bdd-kickstart-austin")
     end
   end
 
@@ -29,11 +24,7 @@ describe 'squarespace routes' do
       res = Faraday.get "#{BASE_URL}/posting-rules.html"
 
       expect(res.status).to eq 301
-      if BASE_URL.include?('staging')
-        expect(res.headers.dig('location')).to eq("https://cucumber-io-proxy-staging.herokuapp.com/support/posting-rules")
-      else
-        expect(res.headers.dig('location')).to eq("#{BASE_URL}/support/posting-rules")
-      end
+      expect(res.headers.dig('location')).to include("/support/posting-rules")
     end
   end
 end
