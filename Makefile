@@ -3,7 +3,7 @@
 .PHONY: rspec
 rspec: 
 	bundle install
-	bundle exec rspec
+	bundle exec parallel_rspec spec/
 
 .PHONY: test_local
 test_local:
