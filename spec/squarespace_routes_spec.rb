@@ -15,7 +15,7 @@ describe 'squarespace routes' do
       res = Faraday.get "#{BASE_URL}/events/bdd-kickstart-austin-18"
 
       expect(res.status).to eq 301
-      expect(res.headers.dig('location')).to include("events/2018/10/18/bdd-kickstart-austin")
+      expect(res.headers.dig('location')).to include('events/2018/10/18/bdd-kickstart-austin')
     end
   end
 
@@ -24,7 +24,7 @@ describe 'squarespace routes' do
       res = Faraday.get "#{BASE_URL}/posting-rules.html"
 
       expect(res.status).to eq 301
-      expect(res.headers.dig('location')).to include("/support/posting-rules")
+      expect(res.headers.dig('location')).to include('/support/posting-rules')
     end
   end
 end

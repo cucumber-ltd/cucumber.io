@@ -2,7 +2,344 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://cucumber.ghost.io/</loc>
-    <lastmod>2019-04-10T15:19:50.800Z</lastmod>
+    <loc>https://cucumber.io/events</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2018-11-30</lastmod>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2018/10/18/bdd-kickstart-austin</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2018-10-01</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8fadd8575d1fff85ece624/1536142911046/ryan-marsh.JPG</image:loc>
+      <image:title>Events - BDD Kickstart, Austin</image:title>
+      <image:caption>Ryan Marsh Ryan Marsh is an agile coach, trainer, and hacker who works with enterprise software development teams to help them be their very best. Ryan believes enterprise software development can be fun, rewarding, and move at high speed no matter the industry. Ryan has helped technology teams supercharge their development at some of America’s most well-known companies. Ryan is a self taught hacker with a broad background in technology. Ryan leverages this unique experience to help teams reach their full potential. Ryan can be found on Twitter, @ryan_marsh</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8fad55352f53909ed52c75/1536057610588/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Austin</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2018/10/31/bdd-kickstart-boston</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2018-10-31</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8e52534ae23722eb863024/1536142677717/MattWynne%28headshot%29.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Boston -  SOLD OUT</image:title>
+      <image:caption>Matt Wynne Matt is one of the world's leading BDD practitioners. A programmer, coach, trainer and popular international speaker, he was invited to join the Cucumber core team in 2009. Together with Aslak Hellesøy, he's co-author of The Cucumber Book, Behaviour-Driven Development for Developers and Testers and a co-founder of Cucumber Ltd. Matt can be found on Twitter, @mattwynne</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8f92c5575d1fff85ec2f2b/1536142677719/IMG_20180904_185700.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Boston -  SOLD OUT</image:title>
+      <image:caption>Ed Snodgrass Ed is a Senior Software Engineer at Proxibid, Inc. During his 13 years of experience he has built applications in the DoD space as well as in the public sector. Ed is an advocate of professional development, Agile principles, and XP practices. He recently has become excited about BDD and enjoys bridging the gaps between product folks, testers, and developers.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8e60dd898583fbc6ce8a9f/1536142677715/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Boston -  SOLD OUT</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2018/12/11/bdd-kickstart-charlotte</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2018-12-12</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5bcde1b9e4966bca9c947e90/1536142677715/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Charlotte</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5bf2c305352f534af4f3d6d1/1542636320795/ryan-marsh.JPG</image:loc>
+      <image:title>Events - BDD Kickstart, Charlotte</image:title>
+      <image:caption>Ryan Marsh is an agile coach, trainer, and hacker who works with enterprise software development teams to help them be their very best. Ryan believes enterprise software development can be fun, rewarding, and move at high speed no matter the industry. He has helped technology teams supercharge their development at some of America’s most well-known companies. Ryan is a self taught hacker with a varied background in technology. He is also US Army veteran and leverages this unique perspective to help teams reach their full potential.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2019/04/bdd-kickstart-london</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-03-26</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c7d00d1c83025828b4b45df/1555062631990/jonjagger400.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, London</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c3c74a189858359169a6b91/1536142677715/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, London</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2019/4/4/cukenfest-london</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-01-31</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c3c9567352f53368c10104f/1547474285857/Cukenfest+2018-0960.jpg</image:loc>
+      <image:title>Events - CukenFest London</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/events/2019/04/bdd-kickstart-stockholm</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-04-12</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5cb06098a4222f112b9b992f/1555062943115/thomas-sundberg.png</image:loc>
+      <image:title>Events - BDD Kickstart, Stockholm</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5cb05f679b747a373a65786e/1536142677715/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Events - BDD Kickstart, Stockholm</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/cukenspace-attendees</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2018-10-15</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5bc4a53ce79c7060b07e6bda/5bc4a553a4222f13d0f04a1b/1539614164068/matt-wynne-new.jpg</image:loc>
+      <image:title>CukenSpace Attendees - Matt Wynne</image:title>
+      <image:caption>Matt is co-founder of Cucumber.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5bc4a53ce79c7060b07e6bda/5bc4a5df4785d3ab4d044b8a/1539615040694/steve-tooke.jpg</image:loc>
+      <image:title>CukenSpace Attendees - Steve Tooke</image:title>
+      <image:caption>Co founder of Cucumber</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5bc4a53ce79c7060b07e6bda/5bc4a8afeef1a19cbd5163f4/1539614970417/matt-new-profile-team.png</image:loc>
+      <image:title>CukenSpace Attendees - Matt Wynne</image:title>
+      <image:caption>CEO of Cucumber</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5bc4a94053450a5777e70dce/1539614164068/</image:loc>
+      <image:title>CukenSpace Attendees - Matt Wynne</image:title>
+      <image:caption>Matt is co-founder of Cucumber.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/support</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2018-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://cucumber.io/support/posting-rules</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2018-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://cucumber.io/home</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <lastmod>2019-03-12</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c19352f53d3811c39a8/1533377562191/download.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c196d2a73ce52dee8ea/1533377562212/download-1.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c181ae6cf3410ea80b6/1533377562766/download.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c188a922d4284f15b32/1533377561457/download-2.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c18758d46d3424d3fed/1533377561964/Moo-logo-1.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c172b6a286b62087533/1533377560954/download-3.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c17575d1f9e8a8fd658/1533377560377/download-1.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b657c17758d46d3424d3fe9/1533377560674/download-2.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b65790c352f53d3811c0c80/1533376782474/ustwo.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b65790c8a922d4284f12d91/1533376782270/typeform.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b65790b758d46d3424d131f/1533376781953/openbet.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/5b65790b2b6a286b620847c9/5b65790b575d1f9e8a8fa874/1533376780613/paypal-logo.png</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b65ae7d1ae6cf3410ee8777/1533390505093/Screen+Shot+2018-08-04+at+14.35.33.png</image:loc>
+      <image:title>Home - Collaborate</image:title>
+      <image:caption>Cucumber Pro empowers Product Owners and Business Analysts to harness the power of examples.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b65aca88a922d4284f5320c/1533389999987/Cukenfest+2018-1681.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b657216562fa7f5d5320535/1533375011854/Cukenfest+2018-1024.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c53701c0d9297578afa3ad4/1548972071139/Cukenfest+2018-1358.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b657eb46d2a73ce52df113c/1533378236671/Cukenfest+2018-1181.jpg</image:loc>
+      <image:title>Home</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/trainers</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2019-01-03</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2df67921c67c9c70e47891/1546516144505/sal.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Dr Sal Freudenberg She holds a PhD in the Psychology of Collaborative Software Development and since being diagnosed as autistic has developed an interest in neurodiversity. Through re-assessing her own traits and neurology, and considering the extra-ordinary people with whom she has worked over her 25+ years in tech, Sal is raising awareness of the benefits of having diversity in our organisations, and is helping the industry to begin to understand how to support and include every kind of brain. Dr. Sal Freudenberg is Chief Being Sal Officer at Cucumber Ltd. @salfreudenberg</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2deeb96d2a735568c9cfeb/1546514111861/matt-400-cukenspace.png</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Matt Wynne Matt is one of the world's leading BDD practitioners. A programmer, coach, trainer and popular international speaker, he was invited to join the Cucumber core team in 2009. Together with Aslak Hellesøy, he's co-author of The Cucumber Book, Behaviour-Driven Development for Developers and Testers and is the originator of the discovery technique, Example Mapping. Matt is a partner of Cucumber Ltd. @mattwynne</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2df07070a6ad3a91040890/1546514548726/hamish-headshot-400.png</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Hamish Tedeschi Hamish Tedeschi is CEO of Mechanical Rock, a Enterprise DevOps and Cloud Native Product Development company based in Perth, Australia. Hamish has a wealth of experience helping teams harness the power of BDD, TDD and technical practices which elevate teams to excellence. @hamodonk</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2deb2103ce64bbaa37d967/1546513188297/sebrose.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Seb Rose Seb has been a consultant, coach, designer, analyst and developer for over 30 years. He has been involved in the full development lifecycle with experience that ranges from Architecture to Support, from BASIC to Ruby. During his career, he has worked for companies large (e.g. IBM, Amazon) and small, and has extensive experience of failed projects. Seb is the author of Cucumber for Java and Discovery: Explore behaviour using examples. Seb is a partner of Cucumber Limited, @sebrose.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2e11d32b6a28315999a1ff/1546523095115/paul-rayner-400jpg.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Paul Rayner With over 20 years of hands-on software development experience, Paul is a seasoned agile design coach and leadership mentor, helping teams ignite their design skills via DDD and BDD. His book Behavior-Driven Development with Cucumber (co-authored with Richard Lawrence) is forthcoming from Addison-Wesley. @thepaulrayner</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2e12e4aa4a99b879929cf7/1546523378408/richard-lawrence-400.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Richard Lawrence Richard is co-owner of Agile For All. He trains and coaches teams and organizations to become happier and more productive. He draws on a diverse background in software development, engineering, anthropology, and political science. Richard is one of a handful of Certified Scrum Coaches and is a certified trainer of the accelerated learning method Training from the Back of the Room. His book Behavior-Driven Development with Cucumber (co-authored with Paul Rayner) is forthcoming from Addison-Wesley. @rslawrence</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2deed80e2e724fef2991ec/1546514139218/aslak.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Aslak Hellesøy Aslak is the creator of Cucumber. He co-wrote The Cucumber Book, Behaviour-Driven Development for Developers and Testers with Matt Wynne. During his career Aslak has worked with both small and large organisations in several industries such as telecom, trading, banking, retail, insurance, car manufacturing, education and government. Aslak is a partner of Cucumber Ltd. @aslak_hellesoy</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2df003cd836603bebe83cd/1546514440627/julien.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Julien Biezemans Julien is the creator of Cucumber.js - Cucumber for JavaScript, Node.js, and browsers. Julien has been coaching teams in BDD since 2009 and been building applications written in Ruby, PHP, Perl, and JavaScript since 2005. Julien is a partner of Cucumber Ltd. @jbpros</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2df283c2241b439c529ba7/1546515080446/ciaran-400.jpeg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Ciaran McNulty Ciaran helps teams at all levels of ability improve via training and coaching. He has been a PHP professional since the late 90s and is passionate about TDD, BDD and Agile methodologies. He is lead maintainer of PhpSpec, a unit level BDD tool. @ciaranmcnulty</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2def72c2241b439c5287b6/1546514292058/jonjagger400.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Jon Jagger Jon Jagger is a well-known software coach, consultant, trainer, programmer specialising in agile software development (people and process), TDD, BDD, deliberate practice and design. Jon is the creator of Cyber Dojo, a tool for deliberate practice. @jonjagger</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2deab88a922dab8b68a455/1546513082641/steve-tooke.jpg</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Steve Tooke Steve is a software developer, trainer and coach. Passionate about improving his craft and helping others improve theirs. He specialises in helping teams produce business value continuously through improving communication and keeping their code maintainable. BDD is at the core of this process. Steve has been getting paid to build software since 1997. Throughout his career he has worked with renowned organisations like Coach in a Box, the NHS and for a major UK bank. Steve is a partner of Cucumber Ltd. @tooky</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5c2dee1340ec9a33ed7469ec/1546513948127/ryan-400.png</image:loc>
+      <image:title>Trainers</image:title>
+      <image:caption>Ryan Marsh Ryan Marsh is an agile coach, trainer, and hacker who works with enterprise software development teams to help them be their very best. Ryan believes enterprise software development can be fun, rewarding, and move at high speed no matter the industry. Ryan has helped technology teams supercharge their development at some of America’s most well-known companies. Ryan is a self taught hacker with a varied background in technology. He is also US Army veteran. Ryan leverages this unique perspective to help teams reach their full potential. @ryan_marsh</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/school</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2019-04-13</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5ca9a3ea652deac333a3a6cd/1554621421883/CukeUp-7418.jpg</image:loc>
+      <image:title>School</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5ca99e80ec212d909812b713/1554620034517/</image:loc>
+      <image:title>School</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5ca99e67eb393122e832c1cc/1554620008874/CukeUp-7459.jpg</image:loc>
+      <image:title>School</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cucumber.io/training</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2019-04-08</lastmod>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab378e79c701af1fa2629/1554690940311/product-testable.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab3a7a4222f438a0b8424/1554690986402/product-enterprise.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab3239140b7d3bdef092b/1554690852477/product-cucumber.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab3444e17b67af934e692/1554690885468/product-coaching.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab313b208fc87634f64d9/1554690836130/product-fundamentals.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caaab1d15fcc0da6e5d3339/1554688799675/bdd-kickstart-white%281%29.png</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab0cbe5e5f0b640c8e8d8/1554690258754/icon-pro.png</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab04ce2c48381dbba09ad/1554690272473/icon-lightbulb.png</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab133e5e5f0b640c8ecba/1554690362251/icon-laptop.png</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caab14a085229fcaa8b985e/1554690378414/icon-target.png</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5caaa91b0d92973163540ede/1554688284253/learn-hero.jpg</image:loc>
+      <image:title>Training</image:title>
+    </image:image>
   </url>
 </urlset>
