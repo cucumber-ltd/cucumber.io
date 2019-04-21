@@ -34,4 +34,8 @@ RUN chmod +x /entrypoint.sh
 
 COPY nginx/*.conf /etc/nginx/
 
+RUN mkdir /home/www
+COPY robots/robots.txt /home/www/robots.txt
+COPY sitemaps/* /home/www/
+
 CMD sh /entrypoint.sh
