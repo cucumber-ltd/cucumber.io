@@ -40,30 +40,30 @@ describe 'docs routes' do
   end
 
   describe 'miscellaneous paths' do
-    context '/installation' do
+    context 'docs/installation' do
       it 'redirects to the installation main page' do
-        res = Faraday.get "#{BASE_URL}/installation/"
+        res = Faraday.get "#{BASE_URL}/docs/installation/"
 
         expect(res.status).to eq 200
-        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/installation/'
+        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/docs/installation/'
       end
     end
 
-    context '/guides' do
+    context 'docs/guides' do
       it 'redirects to the guides main page' do
-        res = Faraday.get "#{BASE_URL}/guides/"
+        res = Faraday.get "#{BASE_URL}/docs/guides/"
 
         expect(res.status).to eq 200
-        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/guides/'
+        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/docs/guides/'
       end
     end
 
-    context '/guides/10-minute-tutorial/' do
+    context 'docs/guides/10-minute-tutorial/' do
       it 'redirects to the specific guide page' do
-        res = Faraday.get "#{BASE_URL}/guides/10-minute-tutorial/"
+        res = Faraday.get "#{BASE_URL}/docs/guides/10-minute-tutorial/"
 
         expect(res.status).to eq 200
-        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/guides/10-minute-tutorial/'
+        expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.netlify.com/docs/guides/10-minute-tutorial/'
       end
     end
   end
