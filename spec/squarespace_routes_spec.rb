@@ -27,4 +27,13 @@ describe 'squarespace routes' do
       expect(res.headers.dig('location')).to include('/support/posting-rules')
     end
   end
+
+  describe '/school' do
+    it 'proxies to squarespace instead of the old site' do
+      res = Faraday.get "#{BASE_URL}/school"
+
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com'
+    end
+  end
 end
