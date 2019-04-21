@@ -8,6 +8,12 @@
     <lastmod>2018-11-30</lastmod>
   </url>
   <url>
+    <loc>https://cucumber.io/docs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+    <lastmod>2018-11-30</lastmod>
+  </url>
+  <url>
     <loc>https://cucumber.io/events</loc>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
