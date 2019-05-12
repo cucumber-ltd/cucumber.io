@@ -24,18 +24,16 @@ COPY ./conf.d/stub_status.conf /etc/nginx/conf.d/
 
 # The /entrypoint.sh script will launch nginx and the Amplify Agent.
 # The script honors API_KEY and AMPLIFY_IMAGENAME environment
-# variables, and updates /etc/amplify-agent/agent.conf accordingly.
-
+# varables, and updates /etc/amplify-agent/agent.conf accordingly.
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# TO set/override API_KEY and AMPLIFY_IMAGENAME when starting an instance:
-# docker run --name my-nginx1 -e API_KEY='..effc' -e AMPLIFY_IMAGENAME="service-name" -d nginx-amplify
-
 COPY nginx/*.conf /etc/nginx/
 
+# Copy over static files
 RUN mkdir /home/www
-COPY robots/robots.txt /home/www/robots.txt
-COPY sitemaps/* /home/www/
+COPY /static/robots/robots.txt /home/www/robots.txt
+COPY /static/sitemaps/* /home/www/
 
+# Start it up
 CMD sh /entrypoint.sh
