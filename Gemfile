@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '2.3.8'
+ruby '2.6.3'
 
 gem 'faraday', '~> 0.15.4'
 gem 'parallel_tests', '~> 2.28'
