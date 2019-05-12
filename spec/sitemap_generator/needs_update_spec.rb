@@ -3,7 +3,7 @@
 require_relative '../../lib/sitemap_generator/needs_update.rb'
 
 describe 'SitemapGenerator' do
-  describe 'needs update?' do
+  describe 'needs_update?' do
     context 'the external sitemap\'s last modified is newer than our sitemap\'s last modified' do
       it 'returns true' do
         stub_request(:any, 'https://cucumber.ghost.io/sitemap.xml')
