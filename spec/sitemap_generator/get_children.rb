@@ -1,13 +1,32 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/sitemap_generator/get_children.rb'
+require_relative '../../lib/sitemap_generator/child_sitemaps.rb'
 
 describe 'SitemapGenerator' do
   describe 'child_sitemaps' do
     context 'children sitemaps are present in parent sitemap' do
-      it 'returns true' do
+      it 'returns a list of the found sitemaps' do
         stub_request(:any, 'https://cucumber.ghost.io/sitemap.xml')
-          .to_return(body: 'foo')
+          .to_return(body:
+            '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+            <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+              <sitemap>
+                <loc>https://cucumber.ghost.io/sitemap-pages.xml</loc>
+                <lastmod>2019-04-10T15:19:50.801Z</lastmod>
+              </sitemap>
+              <sitemap>
+                <loc>https://cucumber.ghost.io/sitemap-posts.xml</loc>
+                <lastmod>2019-04-05T04:34:10.000Z</lastmod>
+              </sitemap>
+              <sitemap>
+                <loc>https://cucumber.ghost.io/sitemap-authors.xml</loc>
+                <lastmod>2019-04-18T03:21:26.896Z</lastmod>
+              </sitemap>
+              <sitemap>
+                <loc>https://cucumber.ghost.io/sitemap-tags.xml</loc>
+                <lastmod>2019-03-15T00:27:00.000Z</lastmod>
+              </sitemap>
+            </sitemapindex>')
 
         expected = [
           'https://cucumber.ghost.io/sitemap-pages.xml',
@@ -22,17 +41,18 @@ describe 'SitemapGenerator' do
       end
     end
 
-    # context 'children sitemaps are not present in parent sitemap' do
-    #   it 'returns false' do
-    #     stub_request(:any, 'https://cucumber.ghost.io/sitemap.xml')
-    #       .to_return(headers: { 'last-modified' => 'Sun, 01 May 2019 04:59:14 GMT' })
-    #     stub_request(:any, 'https://cucumber.io/sitemap.xml')
-    #       .to_return(headers: { 'last-modified' => 'Sun, 10 May 2019 04:59:14 GMT' })
+    context 'children sitemaps are not present in parent sitemap' do
+      it 'returns empty' do
+        stub_request(:any, 'https://cucumber.ghost.io/sitemap.xml')
+          .to_return(body:
+            '<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+            <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            </sitemapindex>')
 
-    #     actual = SitemapGenerator.needs_update?('sitemap.xml')
+        actual = SitemapGenerator.child_sitemaps
 
-    #     expect(actual).to be false
-    #   end
-    # end
+        expect(actual).to be_empty
+      end
+    end
   end
 end

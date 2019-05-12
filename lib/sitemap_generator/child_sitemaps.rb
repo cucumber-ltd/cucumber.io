@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'nokogiri'
 require 'pry-byebug'
 
 # SitemapGenerator handles generating sanitized sitemaps for our websites
@@ -8,21 +9,23 @@ require 'pry-byebug'
 module SitemapGenerator
   class << self
     def child_sitemaps
-      #   parent_body = get_parent_xml('https://cucumber.ghost.io/sitemap.xml')
-      [
-        'https://cucumber.ghost.io/sitemap-pages.xml',
-        'https://cucumber.ghost.io/sitemap-posts.xml',
-        'https://cucumber.ghost.io/sitemap-authors.xml',
-        'https://cucumber.ghost.io/sitemap-tags.xml'
-      ]
+      parent_body = get_parent_xml('https://cucumber.ghost.io/sitemap.xml')
+      extract_sitemaps(parent_body)
     end
 
     private
 
     def get_parent_xml(url)
       res = Faraday.get url
-
       res.body
+    end
+
+    def extract_sitemaps(parent_body)
+      xml = Nokogiri::XML(parent_body) do |config|
+        config.strict.noblanks
+      end
+      xml.remove_namespaces!
+      xml.xpath('//sitemap').collect { |n| n.child.text }
     end
   end
 end

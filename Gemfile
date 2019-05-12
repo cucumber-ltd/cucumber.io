@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 ruby '2.6.3'
 
 gem 'faraday', '~> 0.15.4'
+gem 'nokogiri', '~> 1.10', '>= 1.10.3'
 gem 'parallel_tests', '~> 2.28'
 gem 'pry-byebug', '~> 3.7'
 gem 'rspec', '~> 3.7'
