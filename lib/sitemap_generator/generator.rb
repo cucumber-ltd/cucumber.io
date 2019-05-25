@@ -96,6 +96,11 @@ class Generator
   end
 
   def write_children(children, location)
-    
+    children.each do |child|
+      File.open("#{location}/#{URI(child["loc"]).path}", "w") do |file|
+        file.write(child["body"])
+        file.close
+      end
+    end
   end
 end

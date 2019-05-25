@@ -376,8 +376,8 @@ describe Generator do
   end
 
   describe 'write_children' do
-    xit 'writes the provided children to disk' do
-        input_xml =
+    it 'writes the provided children to disk' do
+      input_xml =
         '<?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
            <url>
@@ -407,7 +407,8 @@ describe Generator do
       g = Generator.new
       g.write_children(input, './temp')
 
-      expect(File.exists?('./temp/sitemap.xml')).to eq true
+      expect(File.exist?('./temp/sitemap.xml')).to eq true
+      expect(File.read('./temp/sitemap.xml')).to eq input_xml
     end
   end
 end
