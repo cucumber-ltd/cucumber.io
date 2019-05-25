@@ -2,7 +2,6 @@
 
 require 'faraday'
 require 'fileutils'
-require 'pry-byebug'
 require 'nokogiri'
 
 BASE_URL = ENV['BASE_URL'] || 'http://localhost:9001'
