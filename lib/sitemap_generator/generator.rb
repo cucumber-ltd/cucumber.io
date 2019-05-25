@@ -22,6 +22,7 @@ class Generator
     sanitized_children = sanitize_children(children_data)
     written_children = write_children(sanitized_children)
     # Update our current parent map's lastmod dates for the children we updated
+
     #   - Open current parent on disk
     #   - Update child last mods
     #   - Write new version to disk
@@ -103,8 +104,10 @@ class Generator
   end
 
   def write_children(children, location = './static/sitemaps/')
-    children.each do |child|
-      write_map(child['body'], "#{location}/#{URI(child['loc']).path}")
+    children.collect do |child|
+      write_map(child['body'], "#{location}#{URI(child['loc']).path}")
+
+      URI(child['loc']).path
     end
   end
 end

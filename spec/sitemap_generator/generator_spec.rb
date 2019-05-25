@@ -405,8 +405,9 @@ describe Generator do
       input = [{ 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => input_xml }]
 
       g = Generator.new
-      g.write_children(input, './temp')
+      actual = g.write_children(input, './temp')
 
+      expect(actual).to eq ['/sitemap.xml']
       expect(File.exist?('./temp/sitemap.xml')).to eq true
       expect(File.read('./temp/sitemap.xml')).to eq input_xml
     end
