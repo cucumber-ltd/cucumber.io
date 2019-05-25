@@ -37,6 +37,7 @@ commands:
       - run: sed -i "1d" ./nginx/nginx.conf
       - run: sed -i "31d" ./nginx/nginx.conf
       - run: sudo cp nginx/*.conf /etc/nginx/
+      - run: sudo cp static/robots/robots.txt /home/www/robots.txt
       - run: sudo nginx
   
   docker:
