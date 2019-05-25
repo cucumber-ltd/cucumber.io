@@ -11,17 +11,16 @@ class Generator
   def generate
     # Setup data for current sitemaps
     ghost_parent = external_xml('https://cucumber.ghost.io/sitemap.xml')
-    square_parent = external_xml('https://cucumber-website.squarespace.com/sitemap.xml')
     cuke_parent = local_xml('./static/sitemaps/sitemap.xml')
 
     # Gather URL of child maps that need to be regenerated
     children_to_update = find_children_to_update(ghost_parent, cuke_parent)
-    children_to_update.push('https://cucumber.ghost.io/sitemap-pages.xml')
+    children_to_update.push('https://cucumber-website.squarespace.com/sitemap.xml')
 
     # Generate sanitized versions of each child
     children_data = load_children(children_to_update)
     sanitized_children = sanitize_children(children_data)
-    written_children = write_children(sanitized_childre)
+    written_children = write_children(sanitized_children)
     # Update our current parent map's lastmod dates for the children we updated
     #   - Open current parent on disk
     #   - Update child last mods
@@ -95,12 +94,17 @@ class Generator
     edit
   end
 
-  def write_children(children, location)
+  def write_map(data, location)
+    puts "writing to location: #{location}"
+    File.open(location, 'w') do |file|
+      file.write(data)
+      file.close
+    end
+  end
+
+  def write_children(children, location = './static/sitemaps/')
     children.each do |child|
-      File.open("#{location}/#{URI(child["loc"]).path}", "w") do |file|
-        file.write(child["body"])
-        file.close
-      end
+      write_map(child['body'], "#{location}/#{URI(child['loc']).path}")
     end
   end
 end
