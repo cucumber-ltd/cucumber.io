@@ -3,20 +3,16 @@
 require 'faraday'
 require 'fileutils'
 require 'pry-byebug'
-require 'webmock/rspec'
 require 'nokogiri'
 
 BASE_URL = ENV['BASE_URL'] || 'http://localhost:9001'
 
 RSpec.configure do |config|
   config.before(:suite) do
-    dirname = File.dirname('./temp')
-    unless File.directory?(dirname)
-      FileUtils.mkdir_p(dirname)
-    end
-
-    puts "#{dirname}/."
-    # FileUtils.rm_rf("#{dirname}/.", secure: true)
+    # Create a temp directory if it doesn't exist
+    Dir.mkdir "./temp" unless File.directory? "temp"
+    # Clear it out to avoid any issues
+    FileUtils.rm_rf("temp/.", secure: true)
   end
 end
 

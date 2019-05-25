@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'webmock/rspec'
+
 require_relative '../../lib/sitemap_generator/generator.rb'
 
 describe Generator do
@@ -374,13 +376,38 @@ describe Generator do
   end
 
   describe 'write_children' do
-    # it 'writes the provided children to disk' do
+    it 'writes the provided children to disk' do
+        input_xml =
+        '<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+           <url>
+              <loc>https://cucumber.io/events</loc>
+              <changefreq>daily</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+           <url>
+              <loc>https://cucumber.io/events/2018/10/18/bdd-kickstart-austin</loc>
+              <changefreq>monthly</changefreq>
+              <priority>0.5</priority>
+              <lastmod>2018-10-01</lastmod>
+              <image:image>
+                 <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8fadd8575d1fff85ece624/1536142911046/ryan-marsh.JPG</image:loc>
+                 <image:title>Events - BDD Kickstart, Austin</image:title>
+                 <image:caption>Ryan Marsh Ryan Marsh is an agile coach, trainer, and hacker who works with enterprise software development teams to help them be their very best. Ryan believes enterprise software development can be fun, rewarding, and move at high speed no matter the industry. Ryan has helped technology teams supercharge their development at some of America’s most well-known companies. Ryan is a self taught hacker with a broad background in technology. Ryan leverages this unique experience to help teams reach their full potential. Ryan can be found on Twitter, @ryan_marsh</image:caption>
+              </image:image>
+              <image:image>
+                 <image:loc>https://static1.squarespace.com/static/5b64cabf5b409bbf05dbd8b3/t/5b8fad55352f53909ed52c75/1536057610588/Cukenfest+2018-1681.jpg</image:loc>
+                 <image:title>Events - BDD Kickstart, Austin</image:title>
+              </image:image>
+           </url>
+        </urlset>'
+      input = [{ 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => input_xml }]
 
+      g = Generator.new
+      g.write_children(input, './temp')
 
-    #   g = Generator.new
-    #   actual = g.write_children('./test_data/sitemaps/sitemap.xml')
-
-    #   expect(actual.to_xml).to eq xml(expected).to_xml
-    # end
+      expect(File.exists?('./temp/sitemap.xml')).to eq true
+    end
   end
 end

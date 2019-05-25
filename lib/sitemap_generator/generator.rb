@@ -95,7 +95,7 @@ class Generator
     edit
   end
 
-  def write_children(children)
+  def write_children(children, location)
     
   end
 end
