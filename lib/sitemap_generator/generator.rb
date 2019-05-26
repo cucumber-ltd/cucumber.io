@@ -21,6 +21,7 @@ class Generator
     # Generate sanitized versions of each child
     children_data = load_children(children_to_update)
     sanitized_children = sanitize_children(children_data)
+    children_to_write = update_pages_map(sanitized_children)
     written_children = write_children(sanitized_children)
     puts "wrote children maps: #{written_children}"
 
@@ -95,6 +96,35 @@ class Generator
     edit.gsub!('cucumber-website.squarespace.com', 'cucumber.io')
 
     edit
+  end
+
+  def update_pages_map(sanitized_children)
+    expected_xml =
+      xml('<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+           <url>
+              <loc>https://cucumber.io/events</loc>
+              <changefreq>monthly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+           <url>
+              <loc>https://cucumber.io/blog</loc>
+              <changefreq>weekly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+           <url>
+              <loc>https://cucumber.io/docs</loc>
+              <changefreq>weekly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+        </urlset>')
+    [
+        { 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => expected_xml }
+      ]
   end
 
   def write_map(data, location)

@@ -398,6 +398,59 @@ describe Generator do
     end
   end
 
+  describe 'update_pages_map' do
+    it 'adds our docs and blog pages to the sitemap' do
+      input_xml = 
+      xml('<?xml version="1.0" encoding="UTF-8"?>
+      <?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+         <url>
+            <loc>https://cucumber.io/events</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.75</priority>
+            <lastmod>2018-11-30</lastmod>
+         </url>
+      </urlset>')
+
+      expected_xml =
+      xml('<?xml version="1.0" encoding="UTF-8"?>
+        <?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+           <url>
+              <loc>https://cucumber.io/events</loc>
+              <changefreq>monthly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+           <url>
+              <loc>https://cucumber.io/blog</loc>
+              <changefreq>weekly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+           <url>
+              <loc>https://cucumber.io/docs</loc>
+              <changefreq>weekly</changefreq>
+              <priority>0.75</priority>
+              <lastmod>2018-11-30</lastmod>
+           </url>
+        </urlset>')
+
+        input = [
+          { 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => input_xml }
+        ]
+
+        expected = [
+          { 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => expected_xml }
+        ]
+
+      g = Generator.new
+      actual = g.update_pages_map(input)
+
+      expect(actual[0]["body"].to_s).to eq expected[0]["body"].to_s
+    end
+  end
+
   describe 'write_children' do
     it 'writes the provided children to disk' do
       posts_xml =
