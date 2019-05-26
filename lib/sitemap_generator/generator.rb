@@ -99,15 +99,20 @@ class Generator
 
   def update_pages_map(children)
     children.collect do |child|
-      if child['loc'].include? 'squarespace'
-        url = child['body'].at_css('url')
-        %w[docs blog].each do |site|
-          url.add_previous_sibling("<url><loc>https://cucumber.io/#{site}</loc><changefreq>weekly</changefreq><priority>0.75</priority><lastmod>#{Time.new.strftime('%F')}</lastmod></url>")
-        end
-      end
+      child['body'] = pages_map_update(child['body']) if child['loc'].include? 'squarespace'
 
       child
     end
+  end
+
+  def pages_map_update(map)
+    body = xml(map)
+    url = body.at_css('url')
+    %w[blog docs].each do |site|
+      url.add_previous_sibling("<url><loc>https://cucumber.io/#{site}</loc><changefreq>weekly</changefreq><priority>0.75</priority><lastmod>#{Time.new.strftime('%F')}</lastmod></url>")
+    end
+
+    body.to_s
   end
 
   def write_map(data, location)
