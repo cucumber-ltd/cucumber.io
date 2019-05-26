@@ -22,11 +22,12 @@ class Generator
     children_data = load_children(children_to_update)
     sanitized_children = sanitize_children(children_data)
     written_children = write_children(sanitized_children)
+    puts "wrote children maps: #{written_children}"
+
     # Update our current parent map's lastmod dates for the children we updated
+    # and write it to disk
     new_parent = update_parent(cuke_parent, written_children)
-    #   - Open current parent on disk
-    #   - Update child last mods
-    #   - Write new version to disk
+    write_map(new_parent, './static/sitemaps/sitemap.xml')
   end
 
   def get(url)
@@ -104,11 +105,17 @@ class Generator
     end
   end
 
-  def write_children(children, location = './static/sitemaps/')
+  def write_children(children, location = './static/sitemaps')
     children.collect do |child|
-      write_map(child['body'], "#{location}#{URI(child['loc']).path}")
+      path = if child['loc'].include? 'squarespace'
+               '/sitemap-pages.xml'
+             else
+               URI(child['loc']).path
+             end
 
-      URI(child['loc']).path
+      write_map(child['body'], "#{location}#{path}")
+
+      path
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/sitemap_generator/generator.rb'
 
 g = Generator.new
