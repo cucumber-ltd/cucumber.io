@@ -60,7 +60,7 @@ class Generator
     # - its last_mod date is newer than our matching map
     ghost_parent.css('sitemap').collect do |e|
       loc = e.css('loc').text
-      next if loc == '/sitemap-sites.xml'
+      next if loc.include? '/sitemap-pages.xml'
 
       last_mod = Date.parse(e.css('lastmod').text)
       matched_date = cuke_data.dig(URI(loc).path)
@@ -98,7 +98,6 @@ class Generator
   end
 
   def write_map(data, location)
-    puts "writing to location: #{location}"
     File.open(location, 'w') do |file|
       file.write(data)
       file.close

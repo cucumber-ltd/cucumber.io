@@ -148,11 +148,34 @@ describe Generator do
           expect(actual).to be_empty
         end
       end
+
+      it 'excludes /sitemap-pages.xml from being included in the list to update' do
+        ghost_parent = xml('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.ghost.io/sitemap.xsl"?>
+        <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+          <sitemap>
+            <loc>https://cucumber.ghost.io/sitemap-pages.xml</loc>
+            <lastmod>2019-05-10T15:19:50.801Z</lastmod>
+          </sitemap>
+        </sitemapindex>')
+
+        cuke_parent = xml('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+          <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <sitemap>
+              <loc>https://cucumber.io/sitemap-pages.xml</loc>
+              <lastmod>2019-04-10T15:19:50.801Z</lastmod>
+            </sitemap>
+          </sitemapindex>')
+
+        g = Generator.new
+        actual = g.find_children_to_update(ghost_parent, cuke_parent)
+
+        expect(actual).to be_empty
+      end
     end
 
     describe 'assumes that maps not found in our current map are new and must be added' do
-      context 'when no children have newer external dates' do
-        it 'returns empty' do
+      context 'when a new map is found' do
+        it 'includes that map to be updated' do
           ghost_parent = xml('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.ghost.io/sitemap.xsl"?>
           <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             <sitemap>
