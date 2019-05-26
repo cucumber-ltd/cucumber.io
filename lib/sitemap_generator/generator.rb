@@ -15,14 +15,13 @@ class Generator
     cuke_parent = local_xml('./static/sitemaps/sitemap.xml')
 
     # Gather URL of child maps that need to be regenerated
-    children_to_update = find_children_to_update(ghost_parent, cuke_parent)
-    children_to_update.push('https://cucumber-website.squarespace.com/sitemap.xml')
+    children_to_update = find_children_to_update(ghost_parent, cuke_parent).push('https://cucumber-website.squarespace.com/sitemap.xml')
 
     # Generate sanitized versions of each child
     children_data = load_children(children_to_update)
     sanitized_children = sanitize_children(children_data)
     children_to_write = update_pages_map(sanitized_children)
-    written_children = write_children(sanitized_children)
+    written_children = write_children(children_to_write)
     puts "wrote children maps: #{written_children}"
 
     # Update our current parent map's lastmod dates for the children we updated
@@ -98,33 +97,17 @@ class Generator
     edit
   end
 
-  def update_pages_map(sanitized_children)
-    expected_xml =
-      xml('<?xml version="1.0" encoding="UTF-8"?>
-        <?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
-        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-           <url>
-              <loc>https://cucumber.io/events</loc>
-              <changefreq>monthly</changefreq>
-              <priority>0.75</priority>
-              <lastmod>2018-11-30</lastmod>
-           </url>
-           <url>
-              <loc>https://cucumber.io/blog</loc>
-              <changefreq>weekly</changefreq>
-              <priority>0.75</priority>
-              <lastmod>2018-11-30</lastmod>
-           </url>
-           <url>
-              <loc>https://cucumber.io/docs</loc>
-              <changefreq>weekly</changefreq>
-              <priority>0.75</priority>
-              <lastmod>2018-11-30</lastmod>
-           </url>
-        </urlset>')
-    [
-        { 'loc' => 'https://cucumber-website.squarespace.com/sitemap.xml', 'body' => expected_xml }
-      ]
+  def update_pages_map(children)
+    children.collect do |child|
+      if child['loc'].include? 'squarespace'
+        url = child['body'].at_css('url')
+        %w[docs blog].each do |site|
+          url.add_previous_sibling("<url><loc>https://cucumber.io/#{site}</loc><changefreq>weekly</changefreq><priority>0.75</priority><lastmod>#{Time.new.strftime('%F')}</lastmod></url>")
+        end
+      end
+
+      child
+    end
   end
 
   def write_map(data, location)
