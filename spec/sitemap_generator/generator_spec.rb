@@ -449,7 +449,23 @@ describe Generator do
     end
 
     context 'when a new child is passed in' do
-      xit 'writes a new entry to the parent' do
+      it 'writes a new entry to the parent' do
+        input_xml = xml('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+          <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <sitemap>
+              <loc>https://cucumber.io/sitemap-pages.xml</loc>
+              <lastmod>2019-04-10T15:19:50.801Z</lastmod>
+            </sitemap>
+          </sitemapindex>')
+        children = ['/sitemap-posts.xml', '/sitemap-tags.xml']
+
+        g = Generator.new
+        actual = g.update_parent(input_xml, children)
+
+        updated_data = g.local_cuke_data(actual)
+        children.each do |child|
+          expect(updated_data[child]).not_to be_nil
+        end
       end
     end
   end

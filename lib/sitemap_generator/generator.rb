@@ -117,13 +117,30 @@ class Generator
     parent = parent_in.dup
     children = children_in.dup
 
+    parent, children = updated_child_times(parent, children, t)
+
+    add_children(parent, children, t)
+  end
+
+  def updated_child_times(parent, children, time)
     parent.css('sitemap').each do |sitemap|
       path = URI(sitemap.css('loc').text).path
 
       if children.include? path
-        sitemap.at_css('lastmod').content = t
+        sitemap.at_css('lastmod').content = time
         children.delete(path)
       end
     end
+
+    [parent, children]
+  end
+
+  def add_children(parent, children, time)
+    maps = parent.at_css('sitemap')
+    children.each do |child|
+      maps.add_next_sibling("<sitemap><loc>https://cucumber.io#{child}</loc><lastmod>#{time}</lastmod></sitemap>")
+    end
+
+    parent
   end
 end
