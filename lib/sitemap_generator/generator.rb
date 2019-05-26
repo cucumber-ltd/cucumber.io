@@ -4,11 +4,12 @@ require 'date'
 require 'faraday'
 require 'nokogiri'
 require 'uri'
+require 'time'
 
 # Generator keeps our sitemaps up to date
 class Generator
   # Generate is the orchestrator
-  def generate
+  def generate_sitemaps
     # Setup data for current sitemaps
     ghost_parent = external_xml('https://cucumber.ghost.io/sitemap.xml')
     cuke_parent = local_xml('./static/sitemaps/sitemap.xml')
@@ -22,7 +23,7 @@ class Generator
     sanitized_children = sanitize_children(children_data)
     written_children = write_children(sanitized_children)
     # Update our current parent map's lastmod dates for the children we updated
-
+    new_parent = update_parent(cuke_parent, written_children)
     #   - Open current parent on disk
     #   - Update child last mods
     #   - Write new version to disk
@@ -108,6 +109,21 @@ class Generator
       write_map(child['body'], "#{location}#{URI(child['loc']).path}")
 
       URI(child['loc']).path
+    end
+  end
+
+  def update_parent(parent_in, children_in)
+    t = Time.new.utc.iso8601(3).to_s
+    parent = parent_in.dup
+    children = children_in.dup
+
+    parent.css('sitemap').each do |sitemap|
+      path = URI(sitemap.css('loc').text).path
+
+      if children.include? path
+        sitemap.at_css('lastmod').content = t
+        children.delete(path)
+      end
     end
   end
 end

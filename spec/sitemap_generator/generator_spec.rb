@@ -412,4 +412,45 @@ describe Generator do
       expect(File.read('./temp/sitemap.xml')).to eq input_xml
     end
   end
+
+  describe 'update_parent' do
+    it 'updates the last modified date of the children that have been passed in' do
+      input_xml = xml('<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="//cucumber.io/sitemap.xsl"?>
+      <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <sitemap>
+          <loc>https://cucumber.io/sitemap-pages.xml</loc>
+          <lastmod>2019-04-10T15:19:50.801Z</lastmod>
+        </sitemap>
+        <sitemap>
+          <loc>https://cucumber.io/sitemap-posts.xml</loc>
+          <lastmod>2019-04-05T04:34:10.000Z</lastmod>
+        </sitemap>
+        <sitemap>
+          <loc>https://cucumber.io/sitemap-authors.xml</loc>
+          <lastmod>2019-04-18T03:21:26.896Z</lastmod>
+        </sitemap>
+        <sitemap>
+          <loc>https://cucumber.io/sitemap-tags.xml</loc>
+          <lastmod>2019-03-15T00:27:00.000Z</lastmod>
+        </sitemap>
+      </sitemapindex>')
+      children = ['/sitemap-pages.xml', '/sitemap-posts.xml', '/sitemap-tags.xml']
+
+      g = Generator.new
+      actual = g.update_parent(input_xml, children)
+
+      updated_data = g.local_cuke_data(actual)
+      input_data = g.local_cuke_data(input_xml)
+
+      children.each do |child|
+        expect(updated_data[child]).to be > input_data[child]
+      end
+      expect(updated_data['/sitemap-authors.xml']).to eq Date.parse('2019-04-18T03:21:26.896Z')
+    end
+
+    context 'when a new child is passed in' do
+      xit 'writes a new entry to the parent' do
+      end
+    end
+  end
 end
