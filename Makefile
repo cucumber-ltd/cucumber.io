@@ -35,3 +35,7 @@ rebuild:
 .PHONY: rubocop
 rubocop: 
 	bundle exec rubocop -a
+
+.PHONY: generate_sitemaps
+generate_sitemaps: 
+	bundle exec ruby ./scripts/generate_sitemaps.rb
