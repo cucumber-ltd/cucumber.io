@@ -32,8 +32,8 @@ COPY nginx/*.conf /etc/nginx/
 
 # Copy over static files
 RUN mkdir /home/www
-COPY /static/robots/robots.txt /home/www/robots.txt
-COPY /static/sitemaps/* /home/www/
+COPY /static/robots/robots.txt /home/www
+COPY /static/sitemaps/* /home/www
 
 # Start it up
 CMD sh /entrypoint.sh
