@@ -447,7 +447,7 @@ describe Generator do
       ]
 
       g = Generator.new
-      actual = g.update_pages_map(input)
+      actual = g.update_pages_map(input, '2019-05-26')
 
       expect(xml(actual[1]['body']).to_s).to eq xml(expected[1]['body']).to_s
     end
