@@ -97,7 +97,7 @@ class Generator
     edit
   end
 
-  def update_pages_map(children, time)
+  def update_pages_map(children, time = Time.new.strftime('%F'))
     children.collect do |child|
       child['body'] = pages_map_update(child['body'], time) if child['loc'].include? 'squarespace'
 
@@ -105,7 +105,7 @@ class Generator
     end
   end
 
-  def pages_map_update(map, time = Time.new.strftime('%F'))
+  def pages_map_update(map, time)
     body = xml(map)
     url = body.at_css('url')
     %w[blog docs].each do |site|
