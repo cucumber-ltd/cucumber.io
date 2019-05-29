@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ruby:
     docker:
-    - image: circleci/ruby:2.3.8
+    - image: circleci/ruby:2.6.3
   working_directory: ~/cucumber.io
 
 commands:
@@ -37,6 +37,9 @@ commands:
       - run: sed -i "1d" ./nginx/nginx.conf
       - run: sed -i "31d" ./nginx/nginx.conf
       - run: sudo cp nginx/*.conf /etc/nginx/
+      - run: sudo mkdir /home/www
+      - run: sudo cp -a static/robots/robots.txt /home/www
+      - run: sudo cp -a static/sitemaps/* /home/www
       - run: sudo nginx
   
   docker:
@@ -56,6 +59,11 @@ commands:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app << parameters.app >>
       - run: heroku container:release web --app << parameters.app >>
+  
+  generate_sitemaps:
+    description: "Checks to see if our sitemaps are out of date and regenerates them along with our pages map if they are"
+    steps:
+      - run: make generate_sitemaps
 
 jobs:
   prod_build_and_deploy:
@@ -89,6 +97,13 @@ jobs:
       - gems
       - rspec:
           base_url: "https://cucumber-io-proxy-staging.herokuapp.com"
+  
+  generate_sitemaps:
+    executor: ruby
+    steps:
+      - checkout
+      - gems
+      - generate_sitemaps
 
 workflows:
   version: 2
@@ -101,10 +116,30 @@ workflows:
       - staging_test:
           requires:
             - staging_build_and_deploy
-      - prod_build_and_deploy:
+      - generate_sitemaps:
           requires:
             - local_test
             - staging_test
           filters:
             branches:
               only: master
+      - prod_build_and_deploy:
+          requires:
+            - generate_sitemaps
+          filters:
+            branches:
+              only: master
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - generate_sitemaps
+      - prod_build_and_deploy:
+          requires:
+            - generate_sitemaps
