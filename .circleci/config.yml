@@ -59,6 +59,11 @@ commands:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app << parameters.app >>
       - run: heroku container:release web --app << parameters.app >>
+  
+  generate_sitemaps:
+    description: "Checks to see if our sitemaps are out of date and regenerates them along with our pages map if they are"
+    steps:
+      - run: make generate_sitemaps
 
 jobs:
   prod_build_and_deploy:
@@ -92,6 +97,13 @@ jobs:
       - gems
       - rspec:
           base_url: "https://cucumber-io-proxy-staging.herokuapp.com"
+  
+  sitemaps:
+    executor: ruby
+    steps:
+      - checkout
+      - gems
+      - generate_sitemaps
 
 workflows:
   version: 2
@@ -111,3 +123,18 @@ workflows:
           filters:
             branches:
               only: master
+      - generate_sitemaps:
+          filters:
+            branches:
+              only: master
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - sitemaps
