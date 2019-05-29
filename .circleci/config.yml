@@ -98,7 +98,7 @@ jobs:
       - rspec:
           base_url: "https://cucumber-io-proxy-staging.herokuapp.com"
   
-  sitemaps:
+  generate_sitemaps:
     executor: ruby
     steps:
       - checkout
@@ -137,4 +137,4 @@ workflows:
               only:
                 - master
     jobs:
-      - sitemaps
+      - generate_sitemaps
