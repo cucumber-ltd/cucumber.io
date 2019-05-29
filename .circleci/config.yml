@@ -116,14 +116,16 @@ workflows:
       - staging_test:
           requires:
             - staging_build_and_deploy
-      - prod_build_and_deploy:
+      - generate_sitemaps:
           requires:
             - local_test
             - staging_test
           filters:
             branches:
               only: master
-      - generate_sitemaps:
+      - prod_build_and_deploy:
+          requires:
+            - generate_sitemaps
           filters:
             branches:
               only: master
@@ -138,3 +140,6 @@ workflows:
                 - master
     jobs:
       - generate_sitemaps
+      - prod_build_and_deploy:
+          requires:
+            - generate_sitemaps
