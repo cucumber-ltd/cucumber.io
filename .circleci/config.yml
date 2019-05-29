@@ -68,7 +68,7 @@ commands:
   copy_sitemaps:
     description: "Copies created sitemaps to be used in building"
     steps:
-      - run: cp ~/data/static/sitemaps ./static/sitemaps
+      - run: cp ~/data/static/sitemaps/* ./static/sitemaps
 
 jobs:
   prod_build_and_deploy:
