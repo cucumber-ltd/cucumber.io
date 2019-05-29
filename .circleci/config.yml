@@ -64,12 +64,20 @@ commands:
     description: "Checks to see if our sitemaps are out of date and regenerates them along with our pages map if they are"
     steps:
       - run: make generate_sitemaps
+  
+  copy_sitemaps:
+    description: "Copies created sitemaps to be used in building"
+    steps:
+      - run: cp ~/data/static/sitemaps ./static/sitemaps
 
 jobs:
   prod_build_and_deploy:
     executor: ruby
     steps:
+      - attach_workspace:
+          at: ~/data
       - checkout
+      - copy_sitemaps
       - docker
       - heroku:
           app: "cucumber-io-proxy"
@@ -104,6 +112,12 @@ jobs:
       - checkout
       - gems
       - generate_sitemaps
+      - attach_workspace:
+          at: ~/data
+      - persist_to_workspace:
+          root: .
+          paths:
+              - static/sitemaps
 
 workflows:
   version: 2
