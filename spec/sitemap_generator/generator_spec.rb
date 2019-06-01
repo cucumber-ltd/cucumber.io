@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'time'
 require 'webmock/rspec'
 
 require_relative '../../lib/sitemap_generator/generator.rb'
@@ -690,6 +691,20 @@ describe Generator do
 
       g = Generator.new
       actual = g.update_generator(to_sanitize)
+
+      expect(actual).to eq expected
+    end
+  end
+
+  describe 'last_mod_time' do
+    it 'returns the last modified date returned via a head request' do
+      expected = Time.parse('Sat, 01 Jun 2019 04:15:44 GMT')
+
+      stub_request(:head, 'https://cucumber.ghost.io/sitemap.xml')
+        .to_return(headers: { 'last-modified' => expected })
+
+      g = Generator.new
+      actual = g.last_mod_time('https://cucumber.ghost.io/sitemap.xml')
 
       expect(actual).to eq expected
     end

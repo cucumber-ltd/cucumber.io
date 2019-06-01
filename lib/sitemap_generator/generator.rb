@@ -31,7 +31,14 @@ class Generator
   end
 
   def generate_rss
-    ghost_parent = external_xml('https://cucumber.ghost.io/rss/')
+    external_url = 'https://cucumber.ghost.io/rss/'
+    if last_mod_time(external_url) < last_mod_time('https://cucumber.io/blog/rss')
+      puts 'external rss not newer, skipping generation'
+      return
+    end
+    puts "generating new rss file"
+
+    ghost_parent = external_xml(external_url)
 
     sanitize_map = [
       ['cucumber.ghost.io/blog/', 'cucumber.io/blog/'],
@@ -49,8 +56,16 @@ class Generator
     Faraday.get url
   end
 
-  def open(filepath)
-    File.read(filepath)
+  def head(url)
+    Faraday.head url
+  end
+
+  def last_mod_time(url)
+    res = head(url)
+
+    last_mod = res.headers.dig('Last-Modified') || res.headers.dig('last-modified')
+
+    Time.parse(last_mod)
   end
 
   def external_xml(url)
@@ -60,7 +75,7 @@ class Generator
   end
 
   def local_xml(filepath)
-    res = open(filepath)
+    res = File.read(filepath)
 
     xml(res)
   end
