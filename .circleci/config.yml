@@ -38,9 +38,14 @@ commands:
       - run: sed -i "31d" ./nginx/nginx.conf
       - run: sudo cp nginx/*.conf /etc/nginx/
       - run: sudo mkdir /home/www
-      - run: sudo cp -a static/robots/robots.txt /home/www
-      - run: sudo cp -a static/sitemaps/* /home/www
       - run: sudo nginx
+
+  copy_static_local:
+    description: "Gets files in place for the local_test job"
+    steps:
+      - run: sudo cp -a static/robots/robots.txt /home/www
+      - run: sudo cp -a static/rss/rss.xml /home/www
+      - run: sudo cp -a static/sitemaps/* /home/www
   
   docker:
     description: "Setup, build, and login to Docker"
@@ -105,6 +110,7 @@ jobs:
     executor: ruby
     steps:
       - checkout
+      - copy_static_local
       - nginx
       - gems
       - rspec
