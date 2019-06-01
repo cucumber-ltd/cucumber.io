@@ -78,7 +78,8 @@ commands:
   copy_rss:
     description: "Copies created rss to be used in building"
     steps:
-      - run: cp ~/data/static/rss/* ./static/rss
+      # - run: cp ~/data/static/rss/* ./static/rss
+      - run: cp ./static/rss/* ./static/rss
 
 jobs:
   prod_build_and_deploy:
