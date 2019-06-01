@@ -398,6 +398,79 @@ describe Generator do
     end
   end
 
+  describe 'sanitize_rss' do
+    it 'returns an xml response with various ghost urls changed to suitable cucumber.io ones' do
+      to_sanitize =
+        '<?xml version="1.0" encoding="UTF-8"?>
+        <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+           <channel>
+              <title><![CDATA[Cucumber Blog]]></title>
+              <description><![CDATA[Thoughts, stories and ideas.]]></description>
+              <link>https://cucumber.ghost.io/</link>
+              <image>
+                 <url>https://cucumber.ghost.io/favicon.png</url>
+                 <title>Cucumber Blog</title>
+                 <link>https://cucumber.ghost.io/</link>
+              </image>
+              <generator>Ghost 2.23</generator>
+              <lastBuildDate>Fri, 31 May 2019 23:53:35 GMT</lastBuildDate>
+              <atom:link href="https://cucumber.ghost.io/rss/" rel="self" type="application/rss+xml" />
+              <ttl>60</ttl>
+              <item>
+                 <title><![CDATA[Alex Schladebeck on Testing - Cucumber Podcast]]></title>
+                 <description><![CDATA[<!--kg-card-begin: html--><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/625808718&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><!--kg-card-end: html--><p>This month on the Cucumber Podcast we sit down with Alex Schladebeck who identifies as a Tester.</p><p><a href="https://twitter.com/SalFreudenberg">Sal Freudenberg</a> and <a href="https://twitter.com/tooky">Steve Tooke</a> - co-founders of Cucumber - ask her about her recent keynote appearance at <a href="http://cukenfest.cucumber.io">CukenFest London</a> as well as her thoughts on the role of modern testers on agile</p>]]></description>
+                 <link>https://cucumber.ghost.io/blog/alex-schladebeck-on-testing/</link>
+                 <guid isPermaLink="false">5ce7bb3658b27b00c085bed0</guid>
+                 <dc:creator><![CDATA[Theo England]]></dc:creator>
+                 <pubDate>Fri, 24 May 2019 09:47:37 GMT</pubDate>
+                 <media:content url="https://cucumber.ghost.io/content/images/2019/05/alex-cukenfest.png" medium="image" />
+                 <content:encoded><![CDATA[<!--kg-card-begin: html--><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/625808718&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><!--kg-card-end: html--><img src="https://cucumber.ghost.io/content/images/2019/05/alex-cukenfest.png" alt="Alex Schladebeck on Testing - Cucumber Podcast"><p>This month on the Cucumber Podcast we sit down with Alex Schladebeck who identifies as a Tester.</p><p><a href="https://twitter.com/SalFreudenberg">Sal Freudenberg</a> and <a href="https://twitter.com/tooky">Steve Tooke</a> - co-founders of Cucumber - ask her about her recent keynote appearance at <a href="http://cukenfest.cucumber.io">CukenFest London</a> as well as her thoughts on the role of modern testers on agile teams.</p><p>Alex can be found on <a href="https://cucumber.ghost.io/blog/alex-schladebeck-on-testing/twitter.com/alex_schl">Twitter</a>. Alex works for <a href="https://www.bredex.de/en/services">Bredex</a> a software consultancy shop based in Germany. </p>]]></content:encoded>
+              </item>
+           </channel>
+        </rss>'
+
+      expected =
+        '<?xml version="1.0" encoding="UTF-8"?>
+        <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+           <channel>
+              <title><![CDATA[Cucumber Blog]]></title>
+              <description><![CDATA[Thoughts, stories and ideas.]]></description>
+              <link>https://cucumber.io/</link>
+              <image>
+                 <url>https://cucumber.io/favicon.png</url>
+                 <title>Cucumber Blog</title>
+                 <link>https://cucumber.io/</link>
+              </image>
+              <generator>Ghost 2.23</generator>
+              <lastBuildDate>Fri, 31 May 2019 23:53:35 GMT</lastBuildDate>
+              <atom:link href="https://cucumber.io/rss/" rel="self" type="application/rss+xml" />
+              <ttl>60</ttl>
+              <item>
+                 <title><![CDATA[Alex Schladebeck on Testing - Cucumber Podcast]]></title>
+                 <description><![CDATA[<!--kg-card-begin: html--><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/625808718&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><!--kg-card-end: html--><p>This month on the Cucumber Podcast we sit down with Alex Schladebeck who identifies as a Tester.</p><p><a href="https://twitter.com/SalFreudenberg">Sal Freudenberg</a> and <a href="https://twitter.com/tooky">Steve Tooke</a> - co-founders of Cucumber - ask her about her recent keynote appearance at <a href="http://cukenfest.cucumber.io">CukenFest London</a> as well as her thoughts on the role of modern testers on agile</p>]]></description>
+                 <link>https://cucumber.io/blog/alex-schladebeck-on-testing/</link>
+                 <guid isPermaLink="false">5ce7bb3658b27b00c085bed0</guid>
+                 <dc:creator><![CDATA[Theo England]]></dc:creator>
+                 <pubDate>Fri, 24 May 2019 09:47:37 GMT</pubDate>
+                 <media:content url="https://cucumber.io/images/2019/05/alex-cukenfest.png" medium="image" />
+                 <content:encoded><![CDATA[<!--kg-card-begin: html--><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/625808718&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><!--kg-card-end: html--><img src="https://cucumber.io/images/2019/05/alex-cukenfest.png" alt="Alex Schladebeck on Testing - Cucumber Podcast"><p>This month on the Cucumber Podcast we sit down with Alex Schladebeck who identifies as a Tester.</p><p><a href="https://twitter.com/SalFreudenberg">Sal Freudenberg</a> and <a href="https://twitter.com/tooky">Steve Tooke</a> - co-founders of Cucumber - ask her about her recent keynote appearance at <a href="http://cukenfest.cucumber.io">CukenFest London</a> as well as her thoughts on the role of modern testers on agile teams.</p><p>Alex can be found on <a href="https://cucumber.io/blog/alex-schladebeck-on-testing/twitter.com/alex_schl">Twitter</a>. Alex works for <a href="https://www.bredex.de/en/services">Bredex</a> a software consultancy shop based in Germany. </p>]]></content:encoded>
+              </item>
+           </channel>
+        </rss>'
+
+      sanitize_map = [
+        ['cucumber.ghost.io/blog/', 'cucumber.io/blog/'],
+        ['cucumber.ghost.io/content/', 'cucumber.io/'],
+        ['cucumber.ghost.io/', 'cucumber.io/']
+      ]
+
+      g = Generator.new
+      actual = g.sanitize_rss(to_sanitize, sanitize_map)
+
+      expect(actual).to eq expected
+    end
+  end
+
   describe 'update_pages_map' do
     it 'adds our docs and blog pages to the sitemap' do
       input_xml_string =
@@ -594,6 +667,31 @@ describe Generator do
           expect(updated_data[child]).not_to be_nil
         end
       end
+    end
+  end
+
+  describe 'update_generator' do
+    it 'adds Cucumber to the generator element' do
+      to_sanitize =
+        '<?xml version="1.0" encoding="UTF-8"?>
+        <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+           <channel>
+              <generator>Ghost 2.23</generator>
+           </channel>
+        </rss>'
+
+      expected =
+        xml('<?xml version="1.0" encoding="UTF-8"?>
+        <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+          <channel>
+            <generator>Ghost 2.23 &amp; Cucumber</generator>
+          </channel>
+        </rss>').to_s
+
+      g = Generator.new
+      actual = g.update_generator(to_sanitize)
+
+      expect(actual).to eq expected
     end
   end
 end

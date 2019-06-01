@@ -8,7 +8,7 @@ require 'time'
 
 # Generator keeps our sitemaps up to date
 class Generator
-  # Generate is the orchestrator
+  # Generate_sitemaps is the orchestrator for creating updated site maps
   def generate_sitemaps
     # Setup data for current sitemaps
     ghost_parent = external_xml('https://cucumber.ghost.io/sitemap.xml')
@@ -27,7 +27,22 @@ class Generator
     # Update our current parent map's lastmod dates for the children we updated
     # and write it to disk
     new_parent = update_parent(cuke_parent, written_children)
-    write_map(new_parent, './static/sitemaps/sitemap.xml')
+    write(new_parent, './static/sitemaps/sitemap.xml')
+  end
+
+  def generate_rss_feed
+    ghost_parent = external_xml('https://cucumber.ghost.io/rss/')
+
+    sanitize_map = [
+      ['cucumber.ghost.io/blog/', 'cucumber.io/blog/'],
+      ['cucumber.ghost.io/', 'cucumber.io/'],
+      ['cucumber.ghost.io/content/', 'cucumber.io/content/']
+    ]
+
+    sanitized_rss = sanitize_rss(ghost_parent, sanitize_map)
+    final_rss = update_generator(sanitized_rss)
+
+    write(final_rss.to_s, './static/rss/rss.xml')
   end
 
   def get(url)
@@ -89,6 +104,13 @@ class Generator
     children.collect { |child| { 'loc' => child['loc'], 'body' => sanitize(child['body']) } }
   end
 
+  def sanitize_rss(input, sanitize_map)
+    edit = input.dup
+    sanitize_map.each { |from, to| edit.gsub!(from, to) }
+
+    edit
+  end
+
   def sanitize(input)
     edit = input.dup
     edit.gsub!('.ghost', '')
@@ -115,7 +137,7 @@ class Generator
     body.to_s
   end
 
-  def write_map(data, location)
+  def write(data, location)
     File.open(location, 'w') do |file|
       file.write(data)
       file.close
@@ -130,10 +152,17 @@ class Generator
                URI(child['loc']).path
              end
 
-      write_map(child['body'], "#{location}#{path}")
+      write(child['body'], "#{location}#{path}")
 
       path
     end
+  end
+
+  def update_generator(input)
+    edit = xml(input.dup)
+    edit.at_css('generator').content = edit.css('generator').text + ' & Cucumber'
+
+    edit.to_s
   end
 
   def update_parent(parent_in, children_in)
