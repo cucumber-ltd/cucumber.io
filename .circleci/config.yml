@@ -69,6 +69,16 @@ commands:
     description: "Copies created sitemaps to be used in building"
     steps:
       - run: cp ~/data/static/sitemaps/* ./static/sitemaps
+  
+  generate_rss:
+    description: "Checks to see if our rss are out of date and regenerates them along with our pages map if they are"
+    steps:
+      - run: make generate_rss
+  
+  copy_rss:
+    description: "Copies created rss to be used in building"
+    steps:
+      - run: cp ~/data/static/rss/* ./static/rss
 
 jobs:
   prod_build_and_deploy:
@@ -78,6 +88,7 @@ jobs:
           at: ~/data
       - checkout
       - copy_sitemaps
+      - copy_rss
       - docker
       - heroku:
           app: "cucumber-io-proxy"

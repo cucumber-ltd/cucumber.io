@@ -30,7 +30,7 @@ class Generator
     write(new_parent, './static/sitemaps/sitemap.xml')
   end
 
-  def generate_rss_feed
+  def generate_rss
     ghost_parent = external_xml('https://cucumber.ghost.io/rss/')
 
     sanitize_map = [

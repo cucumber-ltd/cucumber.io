@@ -39,3 +39,7 @@ rubocop:
 .PHONY: generate_sitemaps
 generate_sitemaps: 
 	bundle exec ruby ./scripts/generate_sitemaps.rb
+
+.PHONY: generate_rss
+generate_rss: 
+	bundle exec ruby ./scripts/generate_rss.rb
