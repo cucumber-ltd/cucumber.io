@@ -39,7 +39,7 @@ class Generator
       ['cucumber.ghost.io/content/', 'cucumber.io/content/']
     ]
 
-    sanitized_rss = sanitize_rss(ghost_parent, sanitize_map)
+    sanitized_rss = sanitize_rss(ghost_parent.to_s, sanitize_map)
     final_rss = update_generator(sanitized_rss)
 
     write(final_rss.to_s, './static/rss/rss.xml')
@@ -49,6 +49,10 @@ class Generator
     Faraday.get url
   end
 
+  def open(filepath)
+    File.read(filepath)
+  end
+
   def external_xml(url)
     res = get(url)
 
@@ -56,7 +60,7 @@ class Generator
   end
 
   def local_xml(filepath)
-    res = File.read(filepath)
+    res = open(filepath)
 
     xml(res)
   end
