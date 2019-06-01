@@ -11,7 +11,7 @@ describe '/blog routes' do
       end
     end
 
-    context '/blog with no trailing slash' do
+    context '/blog with trailing slash' do
       it 'proxies to cucumber.ghost.io/' do
         res = Faraday.get "#{BASE_URL}/blog/"
 
