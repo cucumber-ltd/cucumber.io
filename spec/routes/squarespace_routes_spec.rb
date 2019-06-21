@@ -29,8 +29,17 @@ describe 'squarespace routes' do
   end
 
   describe '/school' do
-    it 'proxies to squarespace instead of the old site' do
+    it 'proxies to squarespace school page instead of the old site' do
       res = Faraday.get "#{BASE_URL}/school"
+
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com'
+    end
+  end
+
+  describe '/training' do
+    it 'proxies to squarespace training page instead of the old site' do
+      res = Faraday.get "#{BASE_URL}/training"
 
       expect(res.status).to eq 200
       expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com'
