@@ -22,7 +22,7 @@ end
 
 describe 'pdf file routes' do
   describe 'files under the events or training directory' do
-    it 'proxies to Square\'s static directory' do
+    xit 'proxies to Square\'s static directory' do
       res = Faraday.get "#{BASE_URL}/training/outline.pdf"
 
       expect(res.status).to eq 302
@@ -31,7 +31,7 @@ describe 'pdf file routes' do
   end
 
   describe 'files under root' do
-    it 'proxies to Square\'s static directory' do
+    xit 'proxies to Square\'s static directory' do
       res = Faraday.get "#{BASE_URL}/bdd-kickstart.pdf"
 
       expect(res.status).to eq 302
