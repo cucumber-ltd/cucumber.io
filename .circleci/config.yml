@@ -80,7 +80,6 @@ jobs:
     executor: ruby
     steps:
       - checkout
-      - copy_static_local
       - nginx
       - gems
       - rspec
