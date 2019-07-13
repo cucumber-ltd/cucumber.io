@@ -2,7 +2,7 @@
 
 describe 'rss routes' do
   describe '/rss' do
-    it 'returns the local /rss.xml' do
+    xit 'returns the current version on S3' do
       res = Faraday.get "#{BASE_URL}/blog/rss"
 
       expect(res.status).to eq 200

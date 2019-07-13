@@ -22,20 +22,20 @@ end
 
 describe 'pdf file routes' do
   describe 'files under the events or training directory' do
-    xit 'proxies to Square\'s static directory' do
+    it 'proxies to S3' do
       res = Faraday.get "#{BASE_URL}/training/outline.pdf"
 
-      expect(res.status).to eq 302
-      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com, https://cucumber.io/s/outline.pdf'
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.io/training/outline.pdf'
     end
   end
 
   describe 'files under root' do
-    xit 'proxies to Square\'s static directory' do
+    it 'proxies to S3' do
       res = Faraday.get "#{BASE_URL}/bdd-kickstart.pdf"
 
-      expect(res.status).to eq 302
-      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber-website.squarespace.com, https://cucumber.io/s/bdd-kickstart.pdf'
+      expect(res.status).to eq 200
+      expect(res.headers.dig('x-proxy-pass')).to eq 'https://cucumber.io/bdd-kickstart.pdf'
     end
   end
 end
