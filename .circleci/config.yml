@@ -56,31 +56,6 @@ commands:
       - run: curl https://cli-assets.heroku.com/install.sh | sh
       - run: heroku container:push web --app << parameters.app >>
       - run: heroku container:release web --app << parameters.app >>
-  
-  generate_sitemaps:
-    description: "Checks to see if our sitemaps are out of date and regenerates them along with our pages map if they are"
-    steps:
-      - run: make generate_sitemaps
-
-  copy_static_local:
-    description: "Gets files in place for the local_test job"
-    steps:
-      - run: sudo mkdir /home/www
-      - run: sudo cp -a static/robots/robots.txt /home/www
-      - run: sudo cp -a static/rss/rss.xml /home/www
-      - run: sudo cp -a static/sitemaps/* /home/www
-  
-  copy_static_files:
-    description: "Copies static files created in previous jobs"
-    steps:
-      - run: cp ~/data/static/sitemaps/* ./static/sitemaps
-      - run: cp ~/data/static/rss/* ./static/rss
-  
-  generate_rss:
-    description: "Checks to see if our rss are out of date and regenerates them along with our pages map if they are"
-    steps:
-      - run: make generate_rss
-      
 
 jobs:
   prod_build_and_deploy:
@@ -89,7 +64,6 @@ jobs:
       - attach_workspace:
           at: ~/data
       - checkout
-      - copy_static_files
       - docker
       - heroku:
           app: "cucumber-io-proxy"
@@ -118,21 +92,6 @@ jobs:
       - gems
       - rspec:
           base_url: "https://cucumber-io-proxy-staging.herokuapp.com"
-  
-  generate_static_files:
-    executor: ruby
-    steps:
-      - attach_workspace:
-          at: ~/data
-      - checkout
-      - gems
-      - generate_sitemaps
-      - generate_rss
-      - persist_to_workspace:
-          root: .
-          paths:
-              - static/sitemaps
-              - static/rss
 
 workflows:
   version: 2
@@ -145,30 +104,9 @@ workflows:
       - staging_test:
           requires:
             - staging_build_and_deploy
-      - generate_static_files:
+      - prod_build_and_deploy:
           requires:
-            - local_test
             - staging_test
           filters:
             branches:
               only: master
-      - prod_build_and_deploy:
-          requires:
-            - generate_static_files
-          filters:
-            branches:
-              only: master
-
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - generate_static_files
-      - prod_build_and_deploy:
-          requires:
-            - generate_static_files
