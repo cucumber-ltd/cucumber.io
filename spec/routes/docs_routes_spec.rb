@@ -10,6 +10,15 @@ describe 'docs routes' do
     end
   end
 
+  describe 'docs.cucumber' do
+    it 'redirects to cucumber.io/docs' do
+      res = Faraday.get "https://docs.cucumber.io"
+
+      expect(res.status).to eq 301
+      expect(res.headers.dig('location')).to eq 'https://cucumber.io/docs'
+    end
+  end
+
   describe 'css and js assets' do
     context '/css/cucumber.css' do
       it 'redirects to the docs css file' do
