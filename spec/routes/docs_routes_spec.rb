@@ -2,7 +2,7 @@
 
 describe 'docs routes' do
   describe '/docs' do
-    it 'redirects to docs.cucumber.io' do
+    it 'redirects to cucumber.io/docs' do
       res = Faraday.get "#{BASE_URL}/docs"
 
       expect(res.status).to eq 200
