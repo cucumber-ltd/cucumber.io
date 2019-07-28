@@ -29,7 +29,9 @@ amplify_imagename="cucumber.io"
 # Modify server.conf to use our provided port
 echo "modifying configs to set port to ${PORT}"
 sed -i -e 's/$PORT/'"$PORT"'/' /etc/nginx/server.conf
+cat /etc/nginx/server.conf | grep listen
 sed -i -e 's/$PORT/'"$PORT"'/' /etc/nginx/conf.d/stub_status.conf
+cat /etc/nginx/conf.d/stub_status.conf | grep listen
 
 echo "setting user in nginx.conf"
 sed -i -e 's/$USER/'"$USER"'/' /etc/nginx/nginx.conf
