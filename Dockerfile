@@ -1,5 +1,7 @@
 FROM nginx:1.13
 
+ENV AMPLIFY_IMAGENAME cucumber.io
+
 # Install the NGINX Amplify Agent
 RUN apt-get update \
     && apt-get install -qqy curl python apt-transport-https apt-utils gnupg1 procps \
@@ -31,4 +33,5 @@ RUN chmod +x /entrypoint.sh
 COPY nginx/*.conf /etc/nginx/
 
 # Start it up
-CMD sh /entrypoint.sh
+# CMD sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
