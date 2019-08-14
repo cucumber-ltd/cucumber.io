@@ -90,7 +90,7 @@ jobs:
       - checkout
       - gems
       - rspec:
-          base_url: "https://cucumber-io-proxy-staging.herokuapp.com"
+          base_url: "http://cucumber-io-proxy-staging.herokuapp.com"
 
 workflows:
   version: 2
