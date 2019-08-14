@@ -39,7 +39,7 @@ Well. We wanted to be able to migrate the website one page at a time from the ol
 
 ### Local
 
-`make local_test`
+`make test_local`
 
 Spins up a local docker container on port 9001, runs rspec against it, and stops the container. If you'd like it to install gems for you too, run: `make local_test_setup`
 
