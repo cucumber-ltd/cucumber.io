@@ -33,7 +33,7 @@ For example, traffic to `/docs` is handled by our hugo app running with Netlify 
 
 ## Why did you make it so complicated?!
 
-Well. We wanted to keep everyone on the same domain, but have choices about the best services to use for the content. You can get these features with Cloudflare's enterprise plan, but that was beyond our budget.
+Well. We wanted to keep everything on the same domain, but have choices about the best services to use for the content. You can get these features with Cloudflare's enterprise plan, but that was beyond our budget.
 
 ## Testing
 
