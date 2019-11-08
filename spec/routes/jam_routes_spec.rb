@@ -2,7 +2,7 @@
 
 describe 'jam routes' do
   describe '/jam' do
-    it 'redirects to jam.convertflowpages.com/sales' do
+    it 'proxies to jam.convertflowpages.com/sales' do
       res = Faraday.get "#{BASE_URL}/jam"
 
       expect(res.status).to eq 200
@@ -11,7 +11,7 @@ describe 'jam routes' do
   end
 
   describe '/pro' do
-    it 'redirects to jam.convertflowpages.com/sales' do
+    it 'proxies to jam.convertflowpages.com/sales' do
       res = Faraday.get "#{BASE_URL}/jam"
 
       expect(res.status).to eq 200

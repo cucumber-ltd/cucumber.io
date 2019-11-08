@@ -3,7 +3,7 @@
 describe '/events routes' do
 
   describe 'old event urls (pre-squarespace)' do
-    it '301s to the /events landing page' do
+    it 'redirects to the /events landing page' do
       res = Faraday.get "#{BASE_URL}/events/some-old-event"
 
       expect(res.status).to eq 301
