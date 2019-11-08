@@ -2,7 +2,7 @@
 
 describe 'docs routes' do
   describe '/docs' do
-    it 'redirects to cucumber.io/docs' do
+    it 'proxies to cucumber.io/docs' do
       res = Faraday.get "#{BASE_URL}/docs"
 
       expect(res.status).to eq 200
@@ -10,7 +10,7 @@ describe 'docs routes' do
     end
   end
 
-  describe 'docs.cucumber' do
+  describe 'docs.cucumber.io' do
     it 'redirects to cucumber.io/docs' do
       res = Faraday.get "https://docs.cucumber.io"
 
@@ -21,7 +21,7 @@ describe 'docs routes' do
 
   describe 'css and js assets' do
     context '/css/cucumber.css' do
-      it 'redirects to the docs css file' do
+      it 'proxies to the docs css file' do
         res = Faraday.get "#{BASE_URL}/css/cucumber.css"
 
         expect(res.status).to eq 200
@@ -30,7 +30,7 @@ describe 'docs routes' do
     end
 
     context '/js/site.js' do
-      it 'redirects to the docs js file' do
+      it 'proxies to the docs js file' do
         res = Faraday.get "#{BASE_URL}/js/site.js"
 
         expect(res.status).to eq 200
@@ -39,7 +39,7 @@ describe 'docs routes' do
     end
 
     context '/img/cucumber-black-128.png' do
-      it 'redirects to the docs logo file' do
+      it 'proxies to the docs logo file' do
         res = Faraday.get "#{BASE_URL}/img/cucumber-black-128.png"
 
         expect(res.status).to eq 200
@@ -50,7 +50,7 @@ describe 'docs routes' do
 
   describe 'miscellaneous paths' do
     context 'docs/installation' do
-      it 'redirects to the installation main page' do
+      it 'proxies to the installation main page' do
         res = Faraday.get "#{BASE_URL}/docs/installation/"
 
         expect(res.status).to eq 200
@@ -59,7 +59,7 @@ describe 'docs routes' do
     end
 
     context 'docs/guides' do
-      it 'redirects to the guides main page' do
+      it 'proxies to the guides main page' do
         res = Faraday.get "#{BASE_URL}/docs/guides/"
 
         expect(res.status).to eq 200
@@ -68,7 +68,7 @@ describe 'docs routes' do
     end
 
     context 'docs/guides/10-minute-tutorial/' do
-      it 'redirects to the specific guide page' do
+      it 'proxies to the specific guide page' do
         res = Faraday.get "#{BASE_URL}/docs/guides/10-minute-tutorial/"
 
         expect(res.status).to eq 200

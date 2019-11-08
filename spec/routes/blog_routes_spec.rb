@@ -3,7 +3,7 @@
 describe '/blog routes' do
   describe '/blog root' do
     context '/blog with no trailing slash' do
-      it 'redirects to cucumber.ghost.io/' do
+      it 'proxies to cucumber.ghost.io/' do
         res = Faraday.get "#{BASE_URL}/blog"
 
         expect(res.status).to eq 200
@@ -22,7 +22,7 @@ describe '/blog routes' do
   end
 
   describe 'old blog url with date in path /blog/1111/11/blog-slug' do
-    it '301s to /blog/{blog-slug}' do
+    it 'redirects to /blog/{blog-slug}' do
       res = Faraday.get "#{BASE_URL}/blog/2014/01/28/cukeup-2014"
 
       expect(res.status).to eq 301
@@ -40,7 +40,7 @@ describe '/blog routes' do
   end
 
   describe 'custom paths' do
-    it 'proxies to cucumber.ghost.io/' do
+    it 'redirects to cucumber.ghost.io/' do
       res = Faraday.get "#{BASE_URL}/blog/introducing-example-mapping"
 
       expect(res.status).to eq 301

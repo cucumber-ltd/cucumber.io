@@ -2,7 +2,7 @@
 
 describe 'squarespace routes' do
   describe '/' do
-    it 'redirects to cucumber-website.squarespace.com/' do
+    it 'proxies to cucumber-website.squarespace.com/' do
       res = Faraday.get "#{BASE_URL}/"
 
       expect(res.status).to eq 200
